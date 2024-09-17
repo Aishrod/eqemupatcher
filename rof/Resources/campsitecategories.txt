@@ -1,0 +1,8 @@
+#*CATEGORY_ID^CATEGORY_DESCRIPTION
+1^Type: General
+2^Type: Spell Focus
+3^Type: Melee Focus
+4^Type: Statistics
+5^Type: Resistances
+6^Type: Illusions
+7^Type: Buffs
