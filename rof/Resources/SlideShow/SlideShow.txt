@@ -1,7 +1,0 @@
-0^image^Resources/SlideShow/slideshow_1.png^17^12^2
-2^audio^Resources/SlideShow/Escape To Norrath.mp3^78
-17^image^Resources/SlideShow/slideshow_2.png^12^2^2
-29^image^Resources/SlideShow/slideshow_3.png^8^2^2
-37^image^Resources/SlideShow/slideshow_4.png^8^2^2
-45^image^Resources/SlideShow/slideshow_5.png^8^2^2
-53^image^Resources/SlideShow/slideshow_6.png^19^2^6
