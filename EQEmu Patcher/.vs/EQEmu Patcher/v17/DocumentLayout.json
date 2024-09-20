@@ -1,7 +1,18 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\EQEmu RoF Client\\ROF2_Client_DLer (1)\\ROF2 Client DLer\\eqemu_rof2_patcher\\eqemupatcher\\EQEmu Patcher\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EC8ED257-CDC0-4623-9CCF-52E9DB8636AC}|EQEmu Patcher\\eqemupatcher.csproj|d:\\eqemu rof client\\rof2_client_dler (1)\\rof2 client dler\\eqemu_rof2_patcher\\eqemupatcher\\eqemu patcher\\eqemu patcher\\filename.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EC8ED257-CDC0-4623-9CCF-52E9DB8636AC}|EQEmu Patcher\\eqemupatcher.csproj|solutionrelative:eqemu patcher\\filename.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|eqemupatcher||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EC8ED257-CDC0-4623-9CCF-52E9DB8636AC}|EQEmu Patcher\\eqemupatcher.csproj|d:\\eqemu rof client\\rof2_client_dler (1)\\rof2 client dler\\eqemu_rof2_patcher\\eqemupatcher\\eqemu patcher\\eqemu patcher\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|984ae51a-4b21-44e7-822c-dd5e046893ef"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +20,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "eqemupatcher",
+              "DocumentMoniker": "D:\\EQEmu RoF Client\\ROF2_Client_DLer (1)\\ROF2 Client DLer\\eqemu_rof2_patcher\\eqemupatcher\\EQEmu Patcher\\EQEmu Patcher\\eqemupatcher.csproj",
+              "RelativeDocumentMoniker": "EQEmu Patcher\\eqemupatcher.csproj",
+              "ToolTip": "D:\\EQEmu RoF Client\\ROF2_Client_DLer (1)\\ROF2 Client DLer\\eqemu_rof2_patcher\\eqemupatcher\\EQEmu Patcher\\EQEmu Patcher\\eqemupatcher.csproj",
+              "RelativeToolTip": "EQEmu Patcher\\eqemupatcher.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-09-20T01:58:26.797Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FileName.cs",
+              "DocumentMoniker": "D:\\EQEmu RoF Client\\ROF2_Client_DLer (1)\\ROF2 Client DLer\\eqemu_rof2_patcher\\eqemupatcher\\EQEmu Patcher\\EQEmu Patcher\\FileName.cs",
+              "RelativeDocumentMoniker": "EQEmu Patcher\\FileName.cs",
+              "ToolTip": "D:\\EQEmu RoF Client\\ROF2_Client_DLer (1)\\ROF2 Client DLer\\eqemu_rof2_patcher\\eqemupatcher\\EQEmu Patcher\\EQEmu Patcher\\FileName.cs",
+              "RelativeToolTip": "EQEmu Patcher\\FileName.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T01:58:21.873Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
