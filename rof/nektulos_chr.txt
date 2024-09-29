@@ -1,4 +1,4 @@
-30
+42
 dke,dke
 seg,seg
 snk,snk
@@ -19,6 +19,16 @@ bet,ecommons_chr
 sna,ecommons_chr
 spi,ecommons_chr
 wil,ecommons_chr
+zom,ecommons_chr
+zof,ecommons_chr
+orc,sro_chr
+rom,rom_chr
+roe,roe_chr
+ork,ork
+wok,wok
+hhm,highkeep_chr
+qcm,qeynos_chr
+hmn,hmn
 gol,cazicthule_chr
 gia,cazicthule_chr
 T05,T05
@@ -29,3 +39,5 @@ tre,southkarana_chr
 rkp,rkp
 mud,mud
 bdr,bdr
+rtn,rtn
+bse,bse
