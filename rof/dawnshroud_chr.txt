@@ -1,0 +1,11 @@
+10
+mmy,mmy_chr
+lmf,lmf_chr
+lmm,lmm_chr
+mmf,mmf_chr
+mmm,mmm_chr
+spd,spd_chr
+spq,spq
+tar,tar
+lsp,lsp
+lsq,lsq
