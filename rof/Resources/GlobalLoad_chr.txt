@@ -1,4 +1,4 @@
-15
+17
 liz,liz_chr
 skn,skn_chr
 mos,mos_chr
@@ -14,3 +14,5 @@ hss,hss_chr
 rea,rea_chr
 bxi,bxi
 bix,kithicor_chr
+bnm,bnm
+brm,lfaydark_chr
