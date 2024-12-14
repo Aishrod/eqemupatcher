@@ -1,4 +1,4 @@
-21
+25
 cst,cst
 cwg,cwg
 pma,pma
@@ -20,3 +20,7 @@ cdm,cdm
 cnp,cnp
 ddm,ddm
 dbx,dbx
+krm,krm
+cpm,warrens_chr
+rtn,rtn
+pma,pma
