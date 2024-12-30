@@ -1,7 +1,9 @@
-6
-hhm,hhm_chr
-qcm,qcm_chr
-qcf,qcf_chr
-brl,brl_chr
-orc,orc_chr
+8
+hhm,highkeep_chr
+qcm,qeynos_chr
+qcf,qeynos_chr
+gnl,gnl
+mmy,mmy_chr
+BRL,BRL_CHR
 gnn,blackburrow_chr
+orc,sro_chr
