@@ -1,0 +1,7 @@
+6
+hhm,hhm_chr
+qcm,qcm_chr
+qcf,qcf_chr
+brl,brl_chr
+orc,orc_chr
+gnn,blackburrow_chr
