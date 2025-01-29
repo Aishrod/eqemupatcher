@@ -1,4 +1,4 @@
-23
+22
 liz,liz_chr
 skn,skn_chr
 mos,mos_chr
