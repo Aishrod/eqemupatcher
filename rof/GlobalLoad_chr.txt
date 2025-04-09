@@ -1,4 +1,4 @@
-23
+27
 liz,liz_chr
 skn,skn_chr
 mos,mos_chr
@@ -21,3 +21,6 @@ tot,postorms_chr
 mep,trakanon_chr
 wwf,wwf
 rim,misty_chr
+pum,pum_chr
+pma,pma
+mpu
