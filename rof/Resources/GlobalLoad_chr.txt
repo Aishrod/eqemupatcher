@@ -1,4 +1,4 @@
-26
+30
 liz,liz_chr
 skn,skn_chr
 mos,mos_chr
@@ -24,3 +24,6 @@ rim,misty_chr
 pum,pum_chr
 pma,pma
 mpu
+lth,lth
+cem
+cnt,cnt
