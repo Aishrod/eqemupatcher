@@ -1,4 +1,4 @@
-30
+38
 liz,liz_chr
 skn,skn_chr
 mos,mos_chr
@@ -27,3 +27,11 @@ mpu
 lth,lth
 cem
 cnt,cnt
+vsm, potimeb_chr
+vpm, tenebrous_chr
+vol, tenebrous_chr
+dvm, mistmoore_chr
+mmv, mmv_chr
+lmm, lmm_chr
+mmm, mmm_chr
+vaf, vaf
