@@ -1,4 +1,4 @@
-40
+42
 liz,liz_chr
 skn,skn_chr
 mos,mos_chr
@@ -37,3 +37,5 @@ mmm, mmm_chr
 vaf, vaf
 krb,krb
 kor,kor
+cdr,cdr
+dke,dke
