@@ -1,4 +1,4 @@
-56
+40
 liz,liz_chr
 skn,skn_chr
 mos,mos_chr
@@ -27,29 +27,13 @@ mpu
 lth,lth
 cem
 cnt,cnt
-vsm,potimeb_chr
-vpm,tenebrous_chr
-vol,tenebrous_chr
-dvm,mistmoore_chr
-mmv,mmv_chr
-lmm,lmm_chr
-mmm,mmm_chr
-vaf,vaf
+vsm, potimeb_chr
+vpm, tenebrous_chr
+vol, tenebrous_chr
+dvm, mistmoore_chr
+mmv, mmv_chr
+lmm, lmm_chr
+mmm, mmm_chr
+vaf, vaf
 krb,krb
 kor,kor
-dra,dra_chr
-dru,hateplane_chr
-sed,sed_chr
-dr2,dr2_chr
-ccd,ccd_chr
-bwd,bwd_chr
-gdr,gdr_chr
-pri,pri_chr
-tmt,tmt_chr
-ldr,ldr
-mdr,mdr
-sdr,sdr
-shd,shd
-drg,drg
-drn
-drp,drp
