@@ -1,4 +1,4 @@
-64
+74
 mtr,mtr
 crs,crs
 glm,glm
@@ -62,3 +62,13 @@ dsb,potimeb_chr
 glc,poinnovation_chr
 btx,codecay_chr
 tmr,powater_chr
+kar,kar_chr
+sro,sro_v1_chr
+raz,raz_chr
+goj,goj_chr
+sar,sar_chr
+fen,fen_chr
+xeg,xeg_chr
+trt,trt_chr
+rth,rth_chr
+pri,pri_chr
