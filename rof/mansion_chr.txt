@@ -18,4 +18,4 @@ glb,glb
 cst,cst
 t02,t02
 bkd,bkd
-sdc,sdc
+sdc,sdc_chr
