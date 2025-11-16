@@ -49,10 +49,10 @@ wom
 uni,lfaydark_chr
 tre,southkarana_chr
 kob,warrends_chr
-cnp,cnp
+cwr,cwr
 all,timorous_chr
 bea,rivervale_chr
-bat
+bat,bat
 frt,innothule_chr
 vrm,pojustice_chr
 pim
