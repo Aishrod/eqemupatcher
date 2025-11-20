@@ -3732,7 +3732,7 @@
 	<ScreenID>IDW_Socket_Slot_1_Screen</ScreenID>
 	<Location>
 		<X>0</X>
-		<Y>590</Y>
+		<Y>600</Y>
 	</Location>
 	<Size>
 		<CX>500</CX>
@@ -3787,7 +3787,7 @@
 	<ScreenID>IDW_Socket_Slot_2_Screen</ScreenID>
 	<Location>
 		<X>0</X>
-		<Y>610</Y>
+		<Y>615</Y>
 	</Location>
 	<Size>
 		<CX>500</CX>
@@ -3897,7 +3897,7 @@
 	<ScreenID>IDW_Socket_Slot_4_Screen</ScreenID>
 	<Location>
 		<X>0</X>
-		<Y>650</Y>
+		<Y>645</Y>
 	</Location>
 	<Size>
 		<CX>500</CX>
@@ -3952,7 +3952,7 @@
 	<ScreenID>IDW_Socket_Slot_5_Screen</ScreenID>
 	<Location>
 		<X>0</X>
-		<Y>680</Y>
+		<Y>660</Y>
 	</Location>
 	<Size>
 		<CX>500</CX>
@@ -4007,7 +4007,7 @@
 	<ScreenID>IDW_Socket_Slot_6_Screen</ScreenID>
 	<Location>
 		<X>0</X>
-		<Y>700</Y>
+		<Y>675</Y>
 	</Location>
 	<Size>
 		<CX>500</CX>
@@ -4032,7 +4032,7 @@
     <Style_VScroll>true</Style_VScroll>
     <AutoStretch>true</AutoStretch>
     <LeftAnchorOffset>10</LeftAnchorOffset>
-    <TopAnchorOffset>720</TopAnchorOffset>
+    <TopAnchorOffset>700</TopAnchorOffset>
     <RightAnchorOffset>0</RightAnchorOffset>
     <BottomAnchorOffset>3</BottomAnchorOffset>
     <RightAnchorToLeft>false</RightAnchorToLeft>
