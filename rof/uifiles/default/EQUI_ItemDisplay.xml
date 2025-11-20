@@ -4398,7 +4398,7 @@
       <CX>700</CX>
       <CY>530</CY>
     </Size>
-    <Style_VScroll>false</Style_VScroll>
+    <Style_VScroll>true</Style_VScroll>
     <Style_HScroll>false</Style_HScroll>
     <Style_Transparent>false</Style_Transparent>
     <TooltipReference>This is an Item Display window</TooltipReference>
