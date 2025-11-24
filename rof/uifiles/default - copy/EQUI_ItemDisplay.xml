@@ -4136,13 +4136,6 @@
     <Pieces>IDW_MadeBy</Pieces>
     <Pieces>IDW_ItemDescription</Pieces>
     <Pieces>IDW_IconButton</Pieces>
-    <Pieces>Screen:IDW_Appearance_Socket_Screen</Pieces>
-    <Pieces>Screen:IDW_Socket_Slot_1_Screen</Pieces>
-    <Pieces>Screen:IDW_Socket_Slot_2_Screen</Pieces>
-    <Pieces>Screen:IDW_Socket_Slot_3_Screen</Pieces>   
-    <Pieces>Screen:IDW_Socket_Slot_4_Screen</Pieces>
-    <Pieces>Screen:IDW_Socket_Slot_5_Screen</Pieces>
-    <Pieces>Screen:IDW_Socket_Slot_6_Screen</Pieces>
     <Pieces>IDW_ModButton</Pieces>
 	<Pieces>IDW_ItemInfo1</Pieces>
 	<Pieces>IDW_ItemInfo2</Pieces>
@@ -4334,7 +4327,14 @@
     <Pieces>IDW_Heroic11</Pieces>
     <Pieces>IDW_Heroic12</Pieces>
     <Pieces>IDW_Heroic13</Pieces>
-    
+    <Pieces>Screen:IDW_Appearance_Socket_Screen</Pieces>
+    <Pieces>Screen:IDW_Socket_Slot_1_Screen</Pieces>
+    <Pieces>Screen:IDW_Socket_Slot_2_Screen</Pieces>
+    <Pieces>Screen:IDW_Socket_Slot_3_Screen</Pieces>   
+    <Pieces>Screen:IDW_Socket_Slot_4_Screen</Pieces>
+    <Pieces>Screen:IDW_Socket_Slot_5_Screen</Pieces>
+    <Pieces>Screen:IDW_Socket_Slot_6_Screen</Pieces>
+
     <Location>
       <X>0</X>
       <Y>22</Y>
