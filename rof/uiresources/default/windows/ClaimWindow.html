@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ClaimWnd</title>
+    </head>
+    <body>
+        <eq-screen
+            item="ClaimWnd"
+            class="WDT_Rounded"
+            title="Claim Window"
+			dispatch="ClaimWnd"
+            draggable
+            minimizebox
+			sizable
+            closebox
+            qmarkbox
+            titlebar
+            x="100"
+            y="100"
+            width="680"
+            height="300"
+			minwidth="400"
+			minheight="200">
+
+			<div slot="body" style="display: flex; flex-direction: column; height: 100%; width: 100%;">
+				<eq-horizontal-layout style="margin-bottom: 3.25rem;">
+				<eq-list
+					slot="left"
+					item="ClaimFeatureList"
+					columns="Features|Count|Unavailable"
+					columns-width="220|40|80"
+					dispatch="ClaimWnd"
+					template="WDT_Inner"
+					tooltip-content="The features on your account which are available to be claimed">
+				</eq-list>
+				<eq-vertical-layout slot="right" style="margin: -0.2rem">
+					<eq-list
+						slot="top"
+						item="ClaimItemList"
+						columns="Items|Count"
+						columns-width="220|40"
+						dispatch="ClaimWnd"
+						template="WDT_Inner"
+						tooltip-content="The items you will receive if you claim the selected feature.  You may right-click an item to display it.">
+					</eq-list>
+					<eq-stml
+						slot="bottom"
+						dispatch="ClaimWnd"
+						template="WDT_Inner"
+						item="ClaimItemDescription">
+					</eq-stml>
+				</eq-vertical-layout>
+				</eq-horizontal-layout>
+				<div 
+					style="flex: 1 1 auto;
+					flex-direction: row; 
+					display: flex;
+					justify-content: space-between;
+					margin-top: -3.1rem;">
+					<eq-button 
+						style="margin: 0.2rem;"
+						dispatch="ClaimWnd" item="ClaimRefreshButton"
+						class="BDT_Normal font-3" height="24" width="64" text="Refresh" no-wrap
+						tooltip-content="Click to refresh the list of features">
+					</eq-button>
+					<div 
+						style="flex: 1 1 auto;
+						display: flex; 
+						flex-direction: row; 
+						justify-content: flex-end;">
+						<eq-button 
+							style="margin: 0.2rem;"
+							dispatch="ClaimWnd" item="ClaimClaimButton"
+							class="BDT_Normal font-3" height="24" width="64" text="Claim" no-wrap
+							tooltip-content="Click to claim the selected feature on this character">
+						</eq-button>
+						<eq-button 
+							style="margin: 0.2rem;"
+							dispatch="ClaimWnd" item="ClaimCancelButton"
+							class="BDT_Normal font-3" height="24" width="64" text="Cancel" no-wrap
+							tooltip-content="Click to cancel and close the window">
+						</eq-button>
+					</div>
+				</div>
+			</div>
+        </eq-screen>
+    </body>
+</html>

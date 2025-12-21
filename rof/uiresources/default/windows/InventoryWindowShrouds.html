@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>InventoryWindow</title>
+    </head>
+    <body>
+        <eq-tab-heading slot="tab" class="FT_DefTabBorder">
+            <div slot="heading-body">Shrouds</div>
+        </eq-tab-heading>
+        <eq-tab-panel slot="panel" class="FT_DefPageBorder">
+            <div slot="panel-body" style="height: 47rem">
+                <eq-vertical-layout autostretch>
+                    <eq-list
+                        slot="top"
+                        item="ProgressionList"
+                        columns="Progression|Unlocked|Next Class|"
+                        columns-width="150|80|120|50"
+                        dispatch="InventoryWindow"
+                        template="WDT_Inner"
+                    ></eq-list>
+
+                    <eq-stml
+                        slot="bottom"
+                        item="ProgressionInfo"
+                        dispatch="InventoryWindow"
+                        template="WDT_Inner"
+                    ></eq-stml>
+                </eq-vertical-layout>
+            </div>
+        </eq-tab-panel>
+    </body>
+</html>

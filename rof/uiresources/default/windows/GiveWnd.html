@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>GiveWnd</title>
+    </head>
+    <body>
+        <eq-screen
+            item="GiveWnd"
+            class="WDT_Rounded"
+            title="Give"
+            dispatch="GiveWnd"
+            closebox
+            draggable
+            titlebar
+            qmarkbox
+            x="0"
+            y="25"
+            width="108"
+            height="375"
+        >
+            <div slot="body">
+                <div>
+                    <eq-stml
+                    dispatch="GiveWnd"
+                    item="GVW_GiveName"
+                    slot="content"                   
+                    style="height: 30px; text-align: center; margin: auto; font-size: 1.3rem; width: 100%;"
+                    line-height="1.1em"
+                    text="NPC"
+                    >NPC</eq-stml>
+                </div>
+
+                <div style="display: flex; flex-direction: column; margin-top: 3px; align-items: center; text-align: center; color: white;">
+                    <eq-inv-slot dispatch="InvSlots" item="GVW_MyItemSlot0"
+                    height="40" width="40" eq-type="GiveWnd"></eq-inv-slot>
+                    <eq-inv-slot dispatch="InvSlots" item="GVW_MyItemSlot1"
+                    height="40" width="40" eq-type="GiveWnd"></eq-inv-slot>
+                    <eq-inv-slot dispatch="InvSlots" item="GVW_MyItemSlot2"
+                    height="40" width="40" eq-type="GiveWnd"></eq-inv-slot>
+                    <eq-inv-slot dispatch="InvSlots" item="GVW_MyItemSlot3"
+                    height="40" width="40" eq-type="GiveWnd"></eq-inv-slot>
+                </div>
+
+                <div style="display: flex; flex-direction: column; margin-top: 3px; align-items: center; text-align: center">
+                    <eq-button dispatch="GiveWnd" item="GVW_MyMoney0"
+                    class="BDT_PlatinumCoin" height="24" width="85" text="0" no-wrap
+                    tooltip-content="Drop coins here"></eq-button>
+                    <eq-button dispatch="GiveWnd" item="GVW_MyMoney1"
+                        class="BDT_GoldCoin" height="24" width="85" text="0" no-wrap
+                        tooltip-content="Drop coins here"></eq-button>
+                    <eq-button dispatch="GiveWnd" item="GVW_MyMoney2"
+                        class="BDT_SilverCoin" height="24" width="85" text="0" no-wrap
+                        tooltip-content="Drop coins here"></eq-button>
+                    <eq-button dispatch="GiveWnd" item="GVW_MyMoney3"
+                        class="BDT_CopperCoin" height="24" width="85" text="0" no-wrap
+                        tooltip-content="Drop coins here"></eq-button>
+                </div>
+
+                <div style="text-align: center; margin-top: 7px;">
+                    <eq-button dispatch="GiveWnd" item="GVW_Give_Button"
+                        class="BDT_Normal font-3" height="20" width="85" text="Give" no-wrap
+                        tooltip-content="Give"></eq-button>
+                </div>
+
+                <div style="text-align: center; margin-top: 5px;">
+                    <eq-button dispatch="GiveWnd" item="GVW_Cancel_Button"
+                        class="BDT_Normal font-3" height="20" width="85" text="Cancel" no-wrap
+                        tooltip-content="Cancel"></eq-button>
+                </div>
+
+            </div>
+        </eq-screen>
+    </body>
+</html>

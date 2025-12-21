@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>QuantityWnd</title>
+    </head>
+    <body>
+        <eq-screen
+            item="QuantityWnd"
+            class="WDT_Rounded"
+            title="Quantity"
+            draggable
+            closebox
+            qmarkbox
+            titlebar
+            x="300"
+            y="10"
+            width="150"
+            height="90"
+        >
+            <div slot="body" style="display: flex; flex: 1 0; flex-direction: column">
+                <eq-slider
+                    style="margin-top: 1.4rem; margin-left: 2rem; margin-right: 2rem; margin-bottom: 0.8rem"
+                    class="SDT_DefSlider"
+                    dispatch="QuantityWnd"
+                    item="QTYW_Slider"
+                ></eq-slider>
+                <div style="display: flex; margin-left: 0.5rem; margin-right: 0.5rem">
+                    <eq-input template="WDT_Inner" dispatch="QuantityWnd" item="QTYW_SliderInput"></eq-input>
+                    <eq-button
+                        style="margin-left: 0.5rem"
+                        class="BDT_Normal"
+                        dispatch="QuantityWnd"
+                        item="QTYW_Accept_Button"
+                        text="Accept"
+                        no-wrap
+                        width="54"
+                        height="20"
+                    ></eq-button>
+                </div>
+            </div>
+        </eq-screen>
+    </body>
+</html>

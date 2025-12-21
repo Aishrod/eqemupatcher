@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>InventoryWindow</title>
+</head>
+
+<body>
+	<eq-tab-heading slot="tab" class="FT_DefTabBorder">
+		<div slot="heading-body">Personas</div>
+	</eq-tab-heading>
+	<eq-tab-panel slot="panel" class="FT_DefPageBorder">
+		<div slot="panel-body">
+			<div style="display: flex; flex: 1 1; justify-content: space-between">
+				<div style="display: flex; flex-direction: column">
+					<div class="inventory-tab-slots">
+						<div class="inventory-tab-slots-row">
+							<eq-inv-slot dispatch="InvSlots" item="InvSlot1" eq-type="personaInventory/Equip 1"
+								tooltip-content="Ear" height="42" width="42"></eq-inv-slot>
+							<eq-inv-slot dispatch="InvSlots" item="InvSlot2" eq-type="personaInventory/Equip 2"
+								tooltip-content="Head" height="42" width="42"></eq-inv-slot>
+							<eq-inv-slot dispatch="InvSlots" item="InvSlot3" eq-type="personaInventory/Equip 3"
+								tooltip-content="Face" height="42" width="42"></eq-inv-slot>
+							<eq-inv-slot dispatch="InvSlots" item="InvSlot4" eq-type="personaInventory/Equip 4"
+								tooltip-content="Ear" height="42" width="42"></eq-inv-slot>
+						</div>
+						<div class="inventory-tab-slots-row">
+							<div class="inventory-tab-slots-column">
+								<eq-inv-slot dispatch="InvSlots" item="InvSlot17" eq-type="personaInventory/Equip 17"
+									tooltip-content="Chest" height="42" width="42"></eq-inv-slot>
+								<eq-inv-slot dispatch="InvSlots" item="InvSlot7" eq-type="personaInventory/Equip 7"
+									tooltip-content="Arms" height="42" width="42"></eq-inv-slot>
+								<eq-inv-slot dispatch="InvSlots" item="InvSlot20" eq-type="personaInventory/Equip 20"
+									tooltip-content="Waist" height="42" width="42"></eq-inv-slot>
+								<eq-inv-slot dispatch="InvSlots" item="InvSlot9" eq-type="personaInventory/Equip 9"
+									tooltip-content="Wrist" height="42" width="42"></eq-inv-slot>
+							</div>
+							<eq-box class="IWP_CharacterView" template="WDT_Inner" style-border="true">
+								<component-slot data-name="body">
+									<eq-image item="PersonaAnim" dispatch="InventoryWindow"
+										width="85" height="168" image-width="75" image-height="142"></eq-image>
+								</component-slot>
+							</eq-box>
+							<div class="inventory-tab-slots-column">
+								<eq-inv-slot dispatch="InvSlots" item="InvSlot5" eq-type="personaInventory/Equip 5"
+									tooltip-content="Neck" height="42" width="42"></eq-inv-slot>
+								<eq-inv-slot dispatch="InvSlots" item="InvSlot8" eq-type="personaInventory/Equip 8"
+									tooltip-content="Back" height="42" width="42"></eq-inv-slot>
+								<eq-inv-slot dispatch="InvSlots" item="InvSlot6" eq-type="personaInventory/Equip 6"
+									tooltip-content="Shoulders" height="42" width="42"></eq-inv-slot>
+								<eq-inv-slot dispatch="InvSlots" item="InvSlot10" eq-type="personaInventory/Equip 10"
+									tooltip-content="Wrist" height="42" width="42"></eq-inv-slot>
+							</div>
+						</div>
+						<div class="inventory-tab-slots-row">
+							<eq-inv-slot dispatch="InvSlots" item="InvSlot18" eq-type="personaInventory/Equip 18"
+								tooltip-content="Legs" height="42" width="42"></eq-inv-slot>
+							<eq-inv-slot dispatch="InvSlots" item="InvSlot12" eq-type="personaInventory/Equip 12"
+								tooltip-content="Hands" height="42" width="42"></eq-inv-slot>
+							<eq-inv-slot dispatch="InvSlots" item="InvSlot0" eq-type="personaInventory/Equip 0"
+								tooltip-content="Charm" height="42" width="42"></eq-inv-slot>
+							<eq-inv-slot dispatch="InvSlots" item="InvSlot19" eq-type="personaInventory/Equip 19"
+								tooltip-content="Feet" height="42" width="42"></eq-inv-slot>
+						</div>
+						<div class="inventory-tab-slots-row">
+							<div class="inventory-tab-empty-slot"></div>
+							<eq-inv-slot dispatch="InvSlots" item="InvSlot15" eq-type="personaInventory/Equip 15"
+								tooltip-content="Fingers" height="42" width="42"></eq-inv-slot>
+							<eq-inv-slot dispatch="InvSlots" item="InvSlot16" eq-type="personaInventory/Equip 16"
+								tooltip-content="Fingers" height="42" width="42"></eq-inv-slot>
+							<eq-inv-slot dispatch="InvSlots" item="InvSlot21" eq-type="personaInventory/Equip 21"
+								tooltip-content="Power Source" height="42" width="42"></eq-inv-slot>
+						</div>
+						<div class="inventory-tab-slots-row">
+							<eq-inv-slot dispatch="InvSlots" item="InvSlot13" eq-type="personaInventory/Equip 13"
+								tooltip-content="Primary" height="42" width="42"></eq-inv-slot>
+							<eq-inv-slot dispatch="InvSlots" item="InvSlot14" eq-type="personaInventory/Equip 14"
+								tooltip-content="Secondary" height="42" width="42"></eq-inv-slot>
+							<eq-inv-slot dispatch="InvSlots" item="InvSlot11" eq-type="personaInventory/Equip 11"
+								tooltip-content="Range" height="42" width="42"></eq-inv-slot>
+							<eq-inv-slot dispatch="InvSlots" item="InvSlot22" eq-type="personaInventory/Equip 22"
+								tooltip-content="Ammo" height="42" width="42"></eq-inv-slot>
+						</div>
+					</div>
+					<div style="display: flex; margin-top: 0.4rem; justify-content: space-between; padding: 0 0.6rem;">
+						<eq-button dispatch="InventoryWindow" item="IWP_SaveEquip"
+						class="BDT_Normal font-2" width="85" height="20" text="Save Set" no-wrap
+						tooltip-content="Save the currently equipped set."></eq-button>
+						<eq-button dispatch="InventoryWindow" item="IWP_LoadEquip"
+						class="BDT_Normal font-2" width="85" height="20" text="Load Set" no-wrap
+						tooltip-content="Load your saved equipment set."></eq-button>
+					</div>
+				</div>
+				<div style="height: 34.7rem; margin: 0 0.4rem">
+					<eq-list
+                        item="IWP_PersonaList"
+                        columns="Class|Level"
+                        columns-width="150|50"
+                        dispatch="InventoryWindow"
+                        template="WDT_Inner"
+                    ></eq-list>
+					<div style="display: flex; margin-top: 0.4rem; justify-content: flex-start; flex-direction: row;">
+						<eq-button dispatch="InventoryWindow" item="IWP_AltSlotPurchase"
+						class="BDT_Normal font-2" width="145" height="20" text="Purchase Alt-Slot" no-wrap
+						background-tint="0|255|0" text-tint="255|233|129"
+						tooltip-content="Purchase an additional Alternate Persona slot."></eq-button>
+						<eq-button dispatch="InventoryWindow" style="margin-left: 0.3rem" item="IWP_CreateClass"
+						class="BDT_Normal font-2" height="20" width="83" text="Create Class" no-wrap
+						tooltip-content="Create or swap to an Alternate Persona."></eq-button>
+					</div>
+					<eq-checkbox
+						item="IWP_AutoLoadSaved"
+						tooltip-content="Pet Info"
+						dispatch="InventoryWindow"
+						label="Auto load saved equipment set"
+						style="margin: 0.5rem 0rem"
+					></eq-checkbox>
+					<eq-checkbox
+						item="IWP_AutoSave"
+						tooltip-content="Pet Info"
+						dispatch="InventoryWindow"
+						label="Auto save current equipment set"
+					></eq-checkbox>
+				</div>	
+			</div>
+		</div>
+	</eq-tab-panel>
+</body>
+
+</html>
