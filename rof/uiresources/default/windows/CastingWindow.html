@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CastingWindow</title>
+    </head>
+    <body>
+        <eq-screen 
+            item="CastingWindow" 
+            class="WDT_Rounded" 
+            title="Casting Time" 
+            draggable
+            titlebar
+            fittocontent="center"
+            dispatch="CastingWindow"
+            relX="0.5"
+            relY="1.0"
+            yOffset="-350">
+            <div slot="body">
+                <eq-label 
+                    item="Casting_SpellName"
+                    dispatch="CastingWindow"
+                    label-type="LABELTYPE_SPELL_BEING_CAST"
+                    style="text-align:center; font-size:1rem; margin:0.2rem;"
+                ></eq-label>
+                <eq-progress-bar 
+                    item="Casting_Gauge"
+                    dispatch="CastingWindow"
+                    gauge-type="GAUGETYPE_CASTING"
+                    gauge-tint="240|0|240"
+                    style="width:11rem; align-self:center; margin:0 0.2rem 0.2rem 0.2rem;"
+                ></eq-progress-bar>
+            </div>
+        </eq-screen>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FindLocationWnd</title>
+    </head>
+    <body>
+        <eq-screen
+            item="FindLocationWnd"
+            class="WDT_Rounded"
+            title="Find Window"
+            dispatch="FindLocationWnd"
+            closebox
+            draggable
+            sizable
+            titlebar
+            minimizebox
+            x="200"
+            y="200"
+            width="435"
+            height="325"
+            minwidth="435"
+            minheight="225"
+        >
+            <div slot="body">
+                <div style="display: flex; flex-direction: column; height: 100%">
+                    <eq-list
+                        item="FLW_FindLocationList"
+                        columns="Category|Description|"
+                        columns-width="100|300"
+                        dispatch="FindLocationWnd"
+                        template="WDT_Inner"
+                    ></eq-list>
+                    <div style="display: flex; flex-direction: row; height: 20px">
+                        <eq-checkbox
+                            item="FLW_FilterLocationsCheckbox"
+                            dispatch="FindLocationWnd"
+                            label="Only show destinations I can use."
+                            tooltip-content=""
+                            style="margin-left: 10px"
+                        ></eq-checkbox>
+                        <eq-checkbox
+                            item="FLW_FilterGroupCheckbox"
+                            dispatch="FindLocationWnd"
+                            label="Show Group"
+                            tooltip-content=""
+                            style="margin-left: 10px"
+                        ></eq-checkbox>
+                        <eq-checkbox
+                            item="FLW_FilterRaidCheckbox"
+                            dispatch="FindLocationWnd"
+                            label="Show Raid"
+                            tooltip-content=""
+                            style="margin-left: 10px"
+                        ></eq-checkbox>
+                    </div>
+                </div>
+                <!-- margin: auto -->
+                <eq-stml
+                    item="FLW_NoneFoundLabel"
+                    dispatch="FindLocationWnd"
+                    slot="content"                   
+                    style="display: block; position: fixed; height: 30px; text-align: center; font-size: 1.3rem; width: 100%; margin-top: 15%;"
+                    line-height="1.1em"
+                    text="There is nothing easily found in this zone."
+                ></eq-stml>
+                
+            </div>
+        </eq-screen>
+    </body>
+</html>

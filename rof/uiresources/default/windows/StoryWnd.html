@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>StoryWnd</title>
+    </head>
+    <body>
+        <eq-screen
+            item="StoryWnd"
+            class="WDT_Rounded"
+            title="Story Window"
+            sizable
+            draggable
+            minimizebox
+            closebox
+            qmarkbox
+            titlebar
+            x="250"
+            y="300"
+            width="375"
+            height="350"
+        >
+            <div slot="body" style="padding: 0.4rem; flex: 1 1">
+                <eq-list
+                    template="WDT_Inner"
+                    style="min-height: 12.2rem; height: 12.2rem; margin-bottom: 0.4rem"
+                    item="StoryList"
+                    columns="Date|Title"
+                    columns-width="160|200"
+                    dispatch="StoryWnd"
+                    tooltip-content="List of story items."
+                ></eq-list>
+                <eq-stml template="WDT_Inner" item="Display" dispatch="StoryWnd" style="flex: 1"></eq-stml>
+
+                <eq-checkbox
+                    style="margin-top: 0.6rem; margin-bottom: 0.2rem"
+                    item="AutomaticButton"
+                    dispatch="StoryWnd"
+                    label="Automatically display when new item exists."
+                ></eq-checkbox>
+            </div>
+        </eq-screen>
+    </body>
+</html>

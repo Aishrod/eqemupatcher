@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>InventoryWindow</title>
+    </head>
+    <body>
+        <eq-tab-heading slot="tab" class="FT_DefTabBorder">
+            <div slot="heading-body">Stats</div>
+        </eq-tab-heading>
+        <eq-tab-panel slot="panel" class="FT_DefPageBorder">
+            <div slot="panel-body">
+                <div class="stats-tab-body">
+                    <div class="stats-tab-column">
+                        <div class="stats-tab-list">
+                            <div class="stats-tab-row">
+                                <eq-label text="HP" no-wrap tooltip-content="Hit Points" item="IWS_HP"></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        label-type="LABELTYPE_HP"
+                                        item="IWS_CurrentHP"
+                                    ></eq-label>
+                                    <eq-label text="/" item="IWS_HPDivider" no-wrap></eq-label>
+                                    <eq-label text="0" no-wrap item="IWS_MaxHP" label-type="LABELTYPE_MAXHP"></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label text="Mana" no-wrap tooltip-content="Mana" item="IWS_MANA"></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentMANA"
+                                        label-type="LABELTYPE_MANA"
+                                    ></eq-label>
+                                    <eq-label text="/" item="IWS_MANADivider" no-wrap></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxMANA"
+                                        label-type="LABELTYPE_MAXMANA"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Endurance"
+                                    no-wrap
+                                    tooltip-content="Endurance"
+                                    item="IWS_Endurance"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentEndurance"
+                                        label-type="LABELTYPE_ENDURANCE"
+                                    ></eq-label>
+                                    <eq-label text="/" item="IWS_EnduranceDivider" no-wrap></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxEndurance"
+                                        label-type="LABELTYPE_MAXENDURANCE"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Armor Class"
+                                    no-wrap
+                                    tooltip-content="Mitigation and Evasion components of your Armor Class"
+                                    item="IWS_ArmorClass"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        tooltip-content="Mitigation: Chance to take less melee damage"
+                                        item="IWS_CurrentMitigation"
+                                        label-type="LABELTYPE_MITIGATION"
+                                    ></eq-label>
+                                    <eq-label text="/" item="IWS_ACDivider" no-wrap></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        tooltip-content="Evasion: Chance to avoid melee damage"
+                                        item="IWS_Evasion"
+                                        label-type="LABELTYPE_EVASION"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Attack"
+                                    no-wrap
+                                    tooltip-content="Offense and Accuracy components of your melee attacks"
+                                    item="IWS_Attack"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        tooltip-content="Offense: Chance to deal more damage"
+                                        item="IWS_CurrentOffense"
+                                        label-type="LABELTYPE_OFFENSE"
+                                    ></eq-label>
+                                    <eq-label text="/" item="IWS_ATKDivider" no-wrap></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        tooltip-content="Accuracy: Chance to land a hit"
+                                        item="IWS_Accuracy"
+                                        label-type="LABELTYPE_ACCURACY"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Haste"
+                                    no-wrap
+                                    tooltip-content="Shows the speed at which you attack - the base is 100%"
+                                    item="IWS_Haste"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentHaste"
+                                        label-type="LABELTYPE_HASTE"
+                                    ></eq-label>
+                                    <eq-label text="%" no-wrap item="IWS_HastePercent"></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Velocity"
+                                    no-wrap
+                                    tooltip-content="Shows the speed at which you are moving"
+                                    item="IWS_Velocity"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentVelocity"
+                                        label-type="LABELTYPE_VELOCITY"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stats-tab-list">
+                            <eq-label
+                                class="stats-tab-label-heading"
+                                text="Regen"
+                                no-wrap
+                                item="IWS_RegenLabel"
+                            ></eq-label>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Combat HP Regen"
+                                    no-wrap
+                                    item="IWS_CombatHPRegen"
+                                    tooltip-content="The number of hit points you will regenerate while in combat"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentCombatHPRegen"
+                                        label-type="LABELTYPE_HP_REGEN"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Combat Mana Regen"
+                                    no-wrap
+                                    item="IWS_CombatManaRegen"
+                                    tooltip-content="The number of mana points you will regenerate while in combat"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentCombatManaRegen"
+                                        label-type="LABELTYPE_MANA_REGEN"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Combat End Regen"
+                                    no-wrap
+                                    item="IWS_CombatEndRegen"
+                                    tooltip-content="The number of endurance points you will regenerate while in combat"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentCombatEndRegen"
+                                        label-type="LABELTYPE_END_REGEN"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stats-tab-list">
+                            <eq-label
+                                class="stats-tab-label-heading"
+                                text="Stats"
+                                no-wrap
+                                item="IWS_StatsLabel"
+                            ></eq-label>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Strength"
+                                    no-wrap
+                                    tooltip-content="Determines your encumbrance limit and is a factor in melee damage"
+                                    item="IWS_Strength"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentStrength"
+                                        label-type="LABELTYPE_BASE_STR"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_StrengthDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxStrength"
+                                        label-type="LABELTYPE_CAP_STR"
+                                    ></eq-label>
+                                    <eq-label
+                                        class="stats-tab-label-plus"
+                                        text="+"
+                                        no-wrap
+                                        item="IWS_StrengthPlus"
+                                    ></eq-label>
+                                    <eq-label
+                                        class="stats-tab-label-plus"
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_HeroicStrength"
+                                        label-type="LABELTYPE_HEROIC_STR"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Stamina"
+                                    no-wrap
+                                    tooltip-content="Influences your hit point and endurance totals"
+                                    item="IWS_Stamina"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentStamina"
+                                        label-type="LABELTYPE_BASE_STA"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_StaminaDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxStamina"
+                                        label-type="LABELTYPE_CAP_STA"
+                                    ></eq-label>
+                                    <eq-label
+                                        class="stats-tab-label-plus"
+                                        text="+"
+                                        no-wrap
+                                        item="IWS_StaminaPlus"
+                                    ></eq-label>
+                                    <eq-label
+                                        class="stats-tab-label-plus"
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_HeroicStamina"
+                                        label-type="LABELTYPE_HEROIC_STA"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Intelligence"
+                                    no-wrap
+                                    tooltip-content="Determines your mana (for some classes) and influences your chance to raise skills"
+                                    item="IWS_Intelligence"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentIntelligence"
+                                        label-type="LABELTYPE_BASE_INT"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_IntelligenceDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxIntelligence"
+                                        label-type="LABELTYPE_CAP_INT"
+                                    ></eq-label>
+                                    <eq-label
+                                        class="stats-tab-label-plus"
+                                        text="+"
+                                        no-wrap
+                                        item="IWS_IntelligencePlus"
+                                    ></eq-label>
+                                    <eq-label
+                                        class="stats-tab-label-plus"
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_HeroicIntelligence"
+                                        label-type="LABELTYPE_HEROIC_INT"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Wisdom"
+                                    no-wrap
+                                    tooltip-content="Determines your mana (for some classes) and influences your chance to raise skills"
+                                    item="IWS_Wisdom"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentWisdom"
+                                        label-type="LABELTYPE_BASE_WIS"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_WisdomDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxWisdom"
+                                        label-type="LABELTYPE_CAP_WIS"
+                                    ></eq-label>
+                                    <eq-label
+                                        class="stats-tab-label-plus"
+                                        text="+"
+                                        no-wrap
+                                        item="IWS_WisdomPlus"
+                                    ></eq-label>
+                                    <eq-label
+                                        class="stats-tab-label-plus"
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_HeroicWisdom"
+                                        label-type="LABELTYPE_HEROIC_WIS"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Agility"
+                                    no-wrap
+                                    tooltip-content="Influences your AC and helps you avoid incoming damage"
+                                    item="IWS_Agility"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentAgility"
+                                        label-type="LABELTYPE_BASE_AGI"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_AgilityDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxAgility"
+                                        label-type="LABELTYPE_CAP_AGI"
+                                    ></eq-label>
+                                    <eq-label
+                                        class="stats-tab-label-plus"
+                                        text="+"
+                                        no-wrap
+                                        item="IWS_AgilityPlus"
+                                    ></eq-label>
+                                    <eq-label
+                                        class="stats-tab-label-plus"
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_HeroicAgility"
+                                        label-type="LABELTYPE_HEROIC_AGI"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Dexterity"
+                                    no-wrap
+                                    tooltip-content="Influences chance to hit, damage done, and chance to skill up"
+                                    item="IWS_Dexterity"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentDexterity"
+                                        label-type="LABELTYPE_BASE_DEX"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_DexterityDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxDexterity"
+                                        label-type="LABELTYPE_CAP_DEX"
+                                    ></eq-label>
+                                    <eq-label
+                                        class="stats-tab-label-plus"
+                                        text="+"
+                                        no-wrap
+                                        item="IWS_DexterityPlus"
+                                    ></eq-label>
+                                    <eq-label
+                                        class="stats-tab-label-plus"
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_HeroicDexterity"
+                                        label-type="LABELTYPE_HEROIC_DEX"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Charisma"
+                                    no-wrap
+                                    tooltip-content="Influences pricing on many vendors and influences success of charm and mesmerization spells"
+                                    item="IWS_Charisma"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentCharisma"
+                                        label-type="LABELTYPE_BASE_CHA"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_CharismaDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxCharisma"
+                                        label-type="LABELTYPE_CAP_CHA"
+                                    ></eq-label>
+                                    <eq-label
+                                        class="stats-tab-label-plus"
+                                        text="+"
+                                        no-wrap
+                                        item="IWS_CharismaPlus"
+                                    ></eq-label>
+                                    <eq-label
+                                        class="stats-tab-label-plus"
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_HeroicCharisma"
+                                        label-type="LABELTYPE_HEROIC_CHA"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stats-tab-list">
+                            <eq-label
+                                class="stats-tab-label-heading"
+                                text="Resists"
+                                no-wrap
+                                item="IWS_ResistsLabel"
+                            ></eq-label>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Magic"
+                                    no-wrap
+                                    tooltip-content="Resists magic-based damage spells"
+                                    item="IWS_Magic"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentMagic"
+                                        label-type="LABELTYPE_BASE_SVM"
+                                    ></eq-label>
+                                    <eq-label text="/" item="IWS_MagicDivider" no-wrap></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxMagic"
+                                        label-type="LABELTYPE_CAP_SVM"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Fire"
+                                    no-wrap
+                                    tooltip-content="Resists fire-based damage spells"
+                                    item="IWS_Fire"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentFire"
+                                        label-type="LABELTYPE_BASE_SVF"
+                                    ></eq-label>
+                                    <eq-label text="/" item="IWS_FireDivider" no-wrap></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxFire"
+                                        label-type="LABELTYPE_CAP_SVF"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Cold"
+                                    no-wrap
+                                    tooltip-content="Resists cold-based damage spells"
+                                    item="IWS_Cold"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentCold"
+                                        label-type="LABELTYPE_BASE_SVC"
+                                    ></eq-label>
+                                    <eq-label text="/" item="IWS_ColdDivider" no-wrap></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxCold"
+                                        label-type="LABELTYPE_CAP_SVC"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Disease"
+                                    no-wrap
+                                    tooltip-content="Resists disease-based damage spells"
+                                    item="IWS_Disease"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentDisease"
+                                        label-type="LABELTYPE_BASE_SVD"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_DiseaseDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxDisease"
+                                        label-type="LABELTYPE_CAP_SVD"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Poison"
+                                    no-wrap
+                                    tooltip-content="Resists poison-based damage spells"
+                                    item="IWS_Poison"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentPoison"
+                                        label-type="LABELTYPE_BASE_SVP"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_PoisonDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxPoison"
+                                        label-type="LABELTYPE_CAP_SVP"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Corruption"
+                                    no-wrap
+                                    tooltip-content="Resists corruption-based damage spells"
+                                    item="IWS_Corruption"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentCorruption"
+                                        label-type="LABELTYPE_BASE_SVCO"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_CorruptionDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxCorruption"
+                                        label-type="LABELTYPE_CAP_SVCO"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stats-tab-column">
+                        <div class="stats-tab-list">
+                            <eq-label
+                                class="stats-tab-label-heading"
+                                text="Heroic Mods"
+                                no-wrap
+                                item="IWS_HeroicModsLabel"
+                            ></eq-label>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Accuracy"
+                                    no-wrap
+                                    tooltip-content="Adds to your ability to make a successful melee attack"
+                                    item="IWS_ItemAccuracy"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentItemAccuracy"
+                                        label-type="LABELTYPE_ITEM_ACCURACY"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_ItemAccuracyDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxItemAccuracy"
+                                        label-type="LABELTYPE_CAP_ITEM_ACCURACY"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Avoidance"
+                                    no-wrap
+                                    tooltip-content="Adds to your ability to avoid incoming melee attacks"
+                                    item="IWS_ItemAvoidance"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentItemAvoidance"
+                                        label-type="LABELTYPE_ITEM_AVOIDANCE"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_ItemAvoidanceDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxItemAvoidance"
+                                        label-type="LABELTYPE_CAP_ITEM_AVOIDANCE"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Combat Effects"
+                                    no-wrap
+                                    tooltip-content="Increases the rate at which you will trigger proc spells during melee"
+                                    item="IWS_CombatEffects"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentCombatEffects"
+                                        label-type="LABELTYPE_COMBAT_EFF"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_CombatEffectsDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxCombatEffects"
+                                        label-type="LABELTYPE_CAP_COMBAT_EFF"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Damage Shielding"
+                                    no-wrap
+                                    tooltip-content="Adds damage to any damage shield effect you have"
+                                    item="IWS_DamageShielding"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentDamageShielding"
+                                        label-type="LABELTYPE_DMG_SHIELDING"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_DamageShieldingDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxDamageShielding"
+                                        label-type="LABELTYPE_CAP_DMG_SHIELDING"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    no-wrap
+                                    text="Damage Shield Mitigation"
+                                    tooltip-content="Reduces the damage you take from damage shield effects on your target"
+                                    item="IWS_DamageShieldMitigation"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentDamageShieldMitigation"
+                                        label-type="LABELTYPE_DMG_SHIELD_MIT"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_DamageShieldMitigationDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxDamageShieldMitigation"
+                                        label-type="LABELTYPE_CAP_DMG_SHIELD_MIT"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="DoT Shielding"
+                                    no-wrap
+                                    tooltip-content="Reduces the base damage of incoming damage-over-time spell attacks"
+                                    item="IWS_DoTShielding"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentDoTShielding"
+                                        label-type="LABELTYPE_DOT_SHIELDING"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_DoTShieldingDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxDoTShielding"
+                                        label-type="LABELTYPE_CAP_DOT_SHIELDING"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Melee Shielding"
+                                    no-wrap
+                                    tooltip-content="Reduces the base damage of incoming melee attacks"
+                                    item="IWS_Shielding"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentShielding"
+                                        label-type="LABELTYPE_SHIELDING"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_ShieldingDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxShielding"
+                                        label-type="LABELTYPE_CAP_SHIELDING"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Spell Shielding"
+                                    no-wrap
+                                    tooltip-content="Reduces the base damage of incoming instant spell attacks"
+                                    item="IWS_SpellShield"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentSpellShield"
+                                        label-type="LABELTYPE_SPELL_SHIELD"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_SpellShieldDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxSpellShield"
+                                        label-type="LABELTYPE_CAP_SPELL_SHIELD"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Strike Through"
+                                    no-wrap
+                                    tooltip-content="Allows your melee attacks to bypass your opponent's active defenses"
+                                    item="IWS_StrikeThrough"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentStrikeThrough"
+                                        label-type="LABELTYPE_STRIKE_THROUGH"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_StrikeThroughDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxStrikeThrough"
+                                        label-type="LABELTYPE_CAP_STRIKE_THROUGH"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Stun Resist"
+                                    no-wrap
+                                    tooltip-content="Increases the chance for you to resist stun effects"
+                                    item="IWS_StunResist"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentStunResist"
+                                        label-type="LABELTYPE_STUN_RESIST"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_StunResistDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxStunResist"
+                                        label-type="LABELTYPE_CAP_STUN_RESIST"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stats-tab-list">
+                            <eq-label
+                                class="stats-tab-label-heading"
+                                text="Spell Mods"
+                                no-wrap
+                                item="IWS_ModsLabel"
+                            ></eq-label>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Heal Amount"
+                                    no-wrap
+                                    tooltip-content="Adds to the effectiveness of your healing spells"
+                                    item="IWS_HealAmount"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentHealAmount"
+                                        label-type="LABELTYPE_HEAL_AMOUNT"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Spell Damage"
+                                    no-wrap
+                                    tooltip-content="Adds to the effectiveness of your damage spells"
+                                    item="IWS_SpellDamage"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentSpellDamage"
+                                        label-type="LABELTYPE_SPELL_DAMAGE"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Clairvoyance"
+                                    no-wrap
+                                    tooltip-content="Adds a chance to return mana to you on a successful spell cast"
+                                    item="IWS_Clairvoyance"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentClairvoyance"
+                                        label-type="LABELTYPE_CLAIRVOYANCE"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Luck"
+                                    no-wrap
+                                    tooltip-content="Has a chance to improve the effects of Heroic Mods, skill successes, and critical potency"
+                                    item="IWS_Luck"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentLuck"
+                                        label-type="LABELTYPE_LUCK"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stats-tab-list">
+                            <eq-label
+                                class="stats-tab-label-heading"
+                                text="Skill Damage Mod"
+                                no-wrap
+                                item="IWS_SkillDamageModLabel"
+                            ></eq-label>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Bash"
+                                    no-wrap
+                                    tooltip-content="Adds to damage when using the Bash skill"
+                                    item="IWS_Bash"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentBash"
+                                        label-type="LABELTYPE_SKILL_DAM_BASH"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_BashDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxBash"
+                                        label-type="LABELTYPE_CAP_SKILL_DAM_BASH"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Backstab"
+                                    no-wrap
+                                    tooltip-content="Adds to damage when using the Backstab skill"
+                                    item="IWS_Backstab"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentBackstab"
+                                        label-type="LABELTYPE_SKILL_DAM_BACKSTAB"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_BackstabDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxBackstab"
+                                        label-type="LABELTYPE_CAP_SKILL_DAM_BACKSTAB"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Dragon Punch"
+                                    no-wrap
+                                    tooltip-content="Adds to damage when using the Dragon Punch skill"
+                                    item="IWS_DragonPunch"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentDragonPunch"
+                                        label-type="LABELTYPE_SKILL_DAM_DRAGONPUNCH"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_DragonPunchDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxDragonPunch"
+                                        label-type="LABELTYPE_CAP_SKILL_DAM_DRAGONPUNCH"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Eagle Strike"
+                                    no-wrap
+                                    tooltip-content="Adds to damage when using the Eagle Strike skill"
+                                    item="IWS_EagleStrike"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentEagleStrike"
+                                        label-type="LABELTYPE_SKILL_DAM_EAGLESTRIKE"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_EagleStrikeDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxEagleStrike"
+                                        label-type="LABELTYPE_CAP_SKILL_DAM_EAGLESTRIKE"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Flying Kick"
+                                    no-wrap
+                                    tooltip-content="Adds to damage when using the Flying Kick skill"
+                                    item="IWS_FlyingKick"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentFlyingKick"
+                                        label-type="LABELTYPE_SKILL_DAM_FLYINGKICK"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_FlyingKickDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxFlyingKick"
+                                        label-type="LABELTYPE_CAP_SKILL_DAM_FLYINGKICK"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Frenzy"
+                                    no-wrap
+                                    tooltip-content="Adds to damage when using the Frenzy skill"
+                                    item="IWS_Frenzy"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentFrenzy"
+                                        label-type="LABELTYPE_SKILL_DAM_FRENZY"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_FrenzyDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxFrenzy"
+                                        label-type="LABELTYPE_CAP_SKILL_DAM_FRENZY"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Kick"
+                                    no-wrap
+                                    tooltip-content="Adds to damage when using the Kick skill"
+                                    item="IWS_Kick"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentKick"
+                                        label-type="LABELTYPE_SKILL_DAM_KICK"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_KickDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxKick"
+                                        label-type="LABELTYPE_CAP_SKILL_DAM_KICK"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Round Kick"
+                                    no-wrap
+                                    tooltip-content="Adds to damage when using the Round Kick skill"
+                                    item="IWS_RoundKick"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentRoundKick"
+                                        label-type="LABELTYPE_SKILL_DAM_ROUNDKICK"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_RoundKickDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxRoundKick"
+                                        label-type="LABELTYPE_CAP_SKILL_DAM_ROUNDKICK"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                            <div class="stats-tab-row">
+                                <eq-label
+                                    text="Tiger Claw"
+                                    no-wrap
+                                    tooltip-content="Adds to damage when using the Tiger Claw skill"
+                                    item="IWS_TigerClaw"
+                                ></eq-label>
+                                <div class="stats-tab-label-content">
+                                    <eq-label
+                                        align-right
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_CurrentTigerClaw"
+                                        label-type="LABELTYPE_SKILL_DAM_TIGERCLAW"
+                                    ></eq-label>
+                                    <eq-label text="/" no-wrap item="IWS_TigerClawDivider"></eq-label>
+                                    <eq-label
+                                        text="0"
+                                        no-wrap
+                                        item="IWS_MaxTigerClaw"
+                                        label-type="LABELTYPE_CAP_SKILL_DAM_TIGERCLAW"
+                                    ></eq-label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </eq-tab-panel>
+    </body>
+</html>

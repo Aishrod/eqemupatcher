@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MainChatWnd</title>
+    </head>
+    <body>
+        <eq-screen
+            item="MainChatWnd"
+            class="WDT_Rounded"
+            title="Main Chat"
+            sizable
+            draggable
+            titlebar
+            style="max-height: 30rem"
+            x="500"
+            y="400"
+            width="400"
+            height="300"
+        >
+            <eq-scroll-container autohide slot="body" style="flex: 1 1">
+                <div id="chat" slot="content" style="min-height: 20rem"></div>
+            </eq-scroll-container>
+
+            <input slot="body" id="chat-input" type="text" style="width: 100%" />
+        </eq-screen>
+    </body>
+</html>
