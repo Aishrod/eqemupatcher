@@ -24,7 +24,6 @@ INV,INV
 nmh,nmh_chr
 ggl,ggl_chr
 nmw,nmw_chr
-trt,trt_chr
 udf,udf_chr
 udk,udk_chr
 spd,spd_chr
