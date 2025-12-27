@@ -1,4 +1,4 @@
-40
+63
 liz,liz_chr
 skn,skn_chr
 mos,mos_chr
@@ -37,3 +37,26 @@ mmm, mmm_chr
 vaf, vaf
 krb,krb
 kor,kor
+cdr,cdr
+dke,dke
+sta,sta
+krk_chr
+pbr,pbr_chr
+tmt,tmt_chr
+wrw,wrw_chr
+sna,ecommons_chr
+wom
+uni,lfaydark_chr
+tre,southkarana_chr
+kob,warrends_chr
+cwr,cwr
+all,timorous_chr
+bea,rivervale_chr
+bat,bat
+frt,innothule_chr
+vrm,pojustice_chr
+pim
+rat,butcher_chr
+bet,ecommons_chr
+fgt,fgt
+b03
