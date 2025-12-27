@@ -1,4 +1,4 @@
-79
+80
 liz,liz_chr
 skn,skn_chr
 mos,mos_chr
@@ -76,3 +76,4 @@ xeg,xeg_chr
 tmr,tmr_chr
 launch
 b03
+wyr,wyr
