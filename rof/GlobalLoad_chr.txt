@@ -27,13 +27,13 @@ mpu
 lth,lth
 cem
 cnt,cnt
-vsm, potimeb_chr
-vpm, tenebrous_chr
-vol, tenebrous_chr
-dvm, mistmoore_chr
-mmv, mmv_chr
-lmm, lmm_chr
-mmm, mmm_chr
-vaf, vaf
+vsm,potimeb_chr
+vpm,tenebrous_chr
+vol,tenebrous_chr
+dvm,mistmoore_chr
+mmv,mmv_chr
+lmm,lmm_chr
+mmm,mmm_chr
+vaf,vaf
 krb,krb
 kor,kor
