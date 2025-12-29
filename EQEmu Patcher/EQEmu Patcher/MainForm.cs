@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -10,6 +10,7 @@ using YamlDotNet.Serialization.NamingConventions;
 using Microsoft.WindowsAPICodePack.Taskbar;
 using System.Diagnostics;
 using System.Threading;
+using System.Linq; // ADDED: for Any()
 
 namespace EQEmu_Patcher
 {
@@ -341,8 +342,6 @@ namespace EQEmu_Patcher
                     //StatusLibrary.Log($"You seem to have put me in a {clientVersions[currentVersion].FullName} client directory");
                 }
 
-                //MessageBox.Show(""+currentVersion);
-                //StatusLibrary.Log($"If you wish to help out, press the scan button on the bottom left and wait for it to complete, then copy paste this data as an Issue on github!");
             }
             catch (UnauthorizedAccessException err)
             {
@@ -475,6 +474,18 @@ namespace EQEmu_Patcher
             }
             if (totalBytes == 0) totalBytes = 1;
 
+            // ============================================================
+            // Name-only folders (download only if missing; skip MD5)
+            // ============================================================
+            // For these folders, the patcher will:
+            //  - Download the file if it does NOT exist
+            //  - Skip MD5 checks and never re-download once it exists
+            var nameOnlyFolders = new[]
+            {
+                "ActorEffects\\",
+                "SpellEffects\\"
+            };
+
             if (myHash != "" && isNeedingSelfUpdate)
             {
                 StatusLibrary.Log("Self update needed, starting with self patch...");
@@ -519,6 +530,19 @@ namespace EQEmu_Patcher
                     continue;
                 }
 
+                // ------------------------------------------------------------
+                // Name-only folder logic: if already present, skip MD5 + download
+                // ------------------------------------------------------------
+                bool isNameOnly = nameOnlyFolders.Any(f =>
+                    path.StartsWith(f, StringComparison.OrdinalIgnoreCase)
+                );
+
+                if (isNameOnly && File.Exists(path))
+                {
+                    currentBytes += entry.size;
+                    continue;
+                }
+
                 // check if file exists and is already patched
                 if (File.Exists(path)) {
                     var md5 = UtilityLibrary.GetMD5(path);
@@ -529,7 +553,6 @@ namespace EQEmu_Patcher
                     }
                     Console.WriteLine($"{path} {md5} vs {entry.md5}");
                 }
-
 
                 string url = filelist.downloadprefix + entry.name.Replace("\\", "/");
 
@@ -682,5 +705,3 @@ namespace EQEmu_Patcher
         public int size { get; set; }
     }
 }
-
-
