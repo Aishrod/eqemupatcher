@@ -57,5 +57,5 @@ frt,innothule_chr
 vrm,pojustice_chr
 pim
 rat,butcher_chr
-bet,ecommons_chr
-fgt,fgt
+bet,bet_chr
+fgt
