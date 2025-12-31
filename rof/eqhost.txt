@@ -1,2 +1,0 @@
-[LoginServer]
-Host=login.eqemulator.net:5999

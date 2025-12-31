@@ -1,2 +1,0 @@
-Name^EmitterDefIdx^X^Y^Z^AlwaysVisible^Lifespan
-Blue Flame 1^11^-1291.896118^-419.682556^25.126987^0^1
