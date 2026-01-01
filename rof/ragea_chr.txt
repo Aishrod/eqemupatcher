@@ -1,6 +1,9 @@
-5
+8
 blv,blv
+dcm,dcm
 fgt,fgt
+glb,glb
 mnt,mnt
+shl,shl
 szk,szk
-wil,wil_chr
+wil,commons_chr
