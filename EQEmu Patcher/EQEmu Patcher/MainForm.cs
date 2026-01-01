@@ -483,7 +483,9 @@ namespace EQEmu_Patcher
             var nameOnlyFolders = new[]
             {
                 "ActorEffects\\",
-                "SpellEffects\\"
+                "SpellEffects\\",
+		"EnvEmitterEffects\\"
+
             };
 
             if (myHash != "" && isNeedingSelfUpdate)
