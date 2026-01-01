@@ -46,6 +46,3 @@
 3,0,TFFFC,mmy_chr,Loading Characters
 4,0,TFFFC,Global2_chr,Loading Global Items and Equipment
 4,0,TFFFC,Global3_chr,Loading Global Items and Equipment
-1,0,TFFF,pum_chr,Loading Characters
-3,0,TFFFC,mpu.eqg,Loading Characters
-3,0,TFFFC,pma.eqg,Loading Characters
