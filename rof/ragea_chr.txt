@@ -1,0 +1,6 @@
+5
+blv,blv
+fgt,fgt
+mnt,mnt
+szk,szk
+wil,wil_chr
