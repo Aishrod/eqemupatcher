@@ -1,9 +1,0 @@
-8
-blv,blv
-dcm,dcm
-fgt,fgt
-glb,glb
-mnt,mnt
-shl,shl
-szk,szk
-wil,commons_chr
