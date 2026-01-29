@@ -1308,7 +1308,7 @@
 	<ScreenID>IDW_Row1Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>60</Y>
 	</Location>
 	<Size>
@@ -1327,7 +1327,7 @@
 	<ScreenID>IDW_Row1Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>60</Y>
 	</Location>
 	<Size>
@@ -1348,7 +1348,7 @@
 	<ScreenID>IDW_Row2Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>76</Y>
 	</Location>
 	<Size>
@@ -1367,7 +1367,7 @@
 	<ScreenID>IDW_Row2Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>76</Y>
 	</Location>
 	<Size>
@@ -1388,7 +1388,7 @@
 	<ScreenID>IDW_Row3Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>92</Y>
 	</Location>
 	<Size>
@@ -1407,7 +1407,7 @@
 	<ScreenID>IDW_Row3Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>92</Y>
 	</Location>
 	<Size>
@@ -1428,7 +1428,7 @@
 	<ScreenID>IDW_Row4Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>108</Y>
 	</Location>
 	<Size>
@@ -1447,7 +1447,7 @@
 	<ScreenID>IDW_Row4Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>108</Y>
 	</Location>
 	<Size>
@@ -1468,7 +1468,7 @@
 	<ScreenID>IDW_Row5Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>124</Y>
 	</Location>
 	<Size>
@@ -1487,7 +1487,7 @@
 	<ScreenID>IDW_Row5Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>124</Y>
 	</Location>
 	<Size>
@@ -1508,7 +1508,7 @@
 	<ScreenID>IDW_Row6Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>140</Y>
 	</Location>
 	<Size>
@@ -1527,7 +1527,7 @@
 	<ScreenID>IDW_Row6Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>140</Y>
 	</Location>
 	<Size>
@@ -1548,7 +1548,7 @@
 	<ScreenID>IDW_Row7Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>156</Y>
 	</Location>
 	<Size>
@@ -1567,7 +1567,7 @@
 	<ScreenID>IDW_Row7Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>156</Y>
 	</Location>
 	<Size>
@@ -1588,7 +1588,7 @@
 	<ScreenID>IDW_Row8Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>172</Y>
 	</Location>
 	<Size>
@@ -1607,7 +1607,7 @@
 	<ScreenID>IDW_Row8Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>172</Y>
 	</Location>
 	<Size>
@@ -1628,7 +1628,7 @@
 	<ScreenID>IDW_Row9Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>188</Y>
 	</Location>
 	<Size>
@@ -1647,7 +1647,7 @@
 	<ScreenID>IDW_Row9Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>188</Y>
 	</Location>
 	<Size>
@@ -1668,7 +1668,7 @@
 	<ScreenID>IDW_Row10Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>204</Y>
 	</Location>
 	<Size>
@@ -1687,7 +1687,7 @@
 	<ScreenID>IDW_Row10Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>204</Y>
 	</Location>
 	<Size>
@@ -1708,7 +1708,7 @@
 	<ScreenID>IDW_Row11Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>220</Y>
 	</Location>
 	<Size>
@@ -1727,7 +1727,7 @@
 	<ScreenID>IDW_Row11Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>220</Y>
 	</Location>
 	<Size>
@@ -1748,7 +1748,7 @@
 	<ScreenID>IDW_Row12Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>236</Y>
 	</Location>
 	<Size>
@@ -1767,7 +1767,7 @@
 	<ScreenID>IDW_Row12Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>236</Y>
 	</Location>
 	<Size>
@@ -1788,7 +1788,7 @@
 	<ScreenID>IDW_Row13Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>252</Y>
 	</Location>
 	<Size>
@@ -1807,7 +1807,7 @@
 	<ScreenID>IDW_Row13Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>252</Y>
 	</Location>
 	<Size>
@@ -1828,7 +1828,7 @@
 	<ScreenID>IDW_Row14Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>268</Y>
 	</Location>
 	<Size>
@@ -1847,7 +1847,7 @@
 	<ScreenID>IDW_Row14Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>268</Y>
 	</Location>
 	<Size>
@@ -1868,7 +1868,7 @@
 	<ScreenID>IDW_Row15Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>284</Y>
 	</Location>
 	<Size>
@@ -1887,7 +1887,7 @@
 	<ScreenID>IDW_Row15Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>284</Y>
 	</Location>
 	<Size>
@@ -1908,7 +1908,7 @@
 	<ScreenID>IDW_Row16Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>300</Y>
 	</Location>
 	<Size>
@@ -1927,7 +1927,7 @@
 	<ScreenID>IDW_Row16Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>300</Y>
 	</Location>
 	<Size>
@@ -1947,7 +1947,7 @@
 	<ScreenID>IDW_Row17Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>316</Y>
 	</Location>
 	<Size>
@@ -1966,7 +1966,7 @@
 	<ScreenID>IDW_Row17Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>316</Y>
 	</Location>
 	<Size>
@@ -1986,7 +1986,7 @@
 	<ScreenID>IDW_Row18Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>332</Y>
 	</Location>
 	<Size>
@@ -2005,7 +2005,7 @@
 	<ScreenID>IDW_Row18Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>332</Y>
 	</Location>
 	<Size>
@@ -2025,7 +2025,7 @@
 	<ScreenID>IDW_Row19Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>348</Y>
 	</Location>
 	<Size>
@@ -2044,7 +2044,7 @@
 	<ScreenID>IDW_Row19Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>348</Y>
 	</Location>
 	<Size>
@@ -2064,7 +2064,7 @@
 	<ScreenID>IDW_Row20Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>364</Y>
 	</Location>
 	<Size>
@@ -2083,7 +2083,7 @@
 	<ScreenID>IDW_Row20Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>364</Y>
 	</Location>
 	<Size>
@@ -2103,7 +2103,7 @@
 	<ScreenID>IDW_Row21Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>380</Y>
 	</Location>
 	<Size>
@@ -2122,7 +2122,7 @@
 	<ScreenID>IDW_Row21Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>380</Y>
 	</Location>
 	<Size>
@@ -2142,7 +2142,7 @@
 	<ScreenID>IDW_Row22Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>396</Y>
 	</Location>
 	<Size>
@@ -2161,7 +2161,7 @@
 	<ScreenID>IDW_Row22Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>396</Y>
 	</Location>
 	<Size>
@@ -2181,7 +2181,7 @@
 	<ScreenID>IDW_Row23Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>412</Y>
 	</Location>
 	<Size>
@@ -2200,7 +2200,7 @@
 	<ScreenID>IDW_Row23Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>412</Y>
 	</Location>
 	<Size>
@@ -2220,7 +2220,7 @@
 	<ScreenID>IDW_Row24Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>428</Y>
 	</Location>
 	<Size>
@@ -2239,7 +2239,7 @@
 	<ScreenID>IDW_Row24Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>428</Y>
 	</Location>
 	<Size>
@@ -2259,7 +2259,7 @@
 	<ScreenID>IDW_Row25Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>444</Y>
 	</Location>
 	<Size>
@@ -2278,7 +2278,7 @@
 	<ScreenID>IDW_Row25Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>444</Y>
 	</Location>
 	<Size>
@@ -2298,7 +2298,7 @@
 	<ScreenID>IDW_Row26Col2Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>460</Y>
 	</Location>
 	<Size>
@@ -2317,7 +2317,7 @@
 	<ScreenID>IDW_Row26Col2Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>190</X>
+		<X>140</X>
 		<Y>460</Y>
 	</Location>
 	<Size>
@@ -2338,7 +2338,7 @@
 	<ScreenID>IDW_Row1Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>60</Y>
 	</Location>
 	<Size>
@@ -2357,7 +2357,7 @@
 	<ScreenID>IDW_Row1Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>60</Y>
 	</Location>
 	<Size>
@@ -2378,7 +2378,7 @@
 	<ScreenID>IDW_Row2Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>76</Y>
 	</Location>
 	<Size>
@@ -2397,7 +2397,7 @@
 	<ScreenID>IDW_Row2Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>76</Y>
 	</Location>
 	<Size>
@@ -2418,7 +2418,7 @@
 	<ScreenID>IDW_Row3Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>92</Y>
 	</Location>
 	<Size>
@@ -2437,7 +2437,7 @@
 	<ScreenID>IDW_Row3Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>92</Y>
 	</Location>
 	<Size>
@@ -2458,7 +2458,7 @@
 	<ScreenID>IDW_Row4Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>108</Y>
 	</Location>
 	<Size>
@@ -2477,7 +2477,7 @@
 	<ScreenID>IDW_Row4Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>108</Y>
 	</Location>
 	<Size>
@@ -2498,7 +2498,7 @@
 	<ScreenID>IDW_Row5Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>124</Y>
 	</Location>
 	<Size>
@@ -2517,7 +2517,7 @@
 	<ScreenID>IDW_Row5Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>124</Y>
 	</Location>
 	<Size>
@@ -2538,7 +2538,7 @@
 	<ScreenID>IDW_Row6Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>140</Y>
 	</Location>
 	<Size>
@@ -2557,7 +2557,7 @@
 	<ScreenID>IDW_Row6Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>140</Y>
 	</Location>
 	<Size>
@@ -2578,7 +2578,7 @@
 	<ScreenID>IDW_Row7Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>156</Y>
 	</Location>
 	<Size>
@@ -2597,7 +2597,7 @@
 	<ScreenID>IDW_Row7Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>156</Y>
 	</Location>
 	<Size>
@@ -2618,7 +2618,7 @@
 	<ScreenID>IDW_Row8Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>172</Y>
 	</Location>
 	<Size>
@@ -2637,7 +2637,7 @@
 	<ScreenID>IDW_Row8Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>172</Y>
 	</Location>
 	<Size>
@@ -2658,7 +2658,7 @@
 	<ScreenID>IDW_Row9Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>188</Y>
 	</Location>
 	<Size>
@@ -2677,7 +2677,7 @@
 	<ScreenID>IDW_Row9Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>188</Y>
 	</Location>
 	<Size>
@@ -2698,7 +2698,7 @@
 	<ScreenID>IDW_Row10Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>204</Y>
 	</Location>
 	<Size>
@@ -2717,7 +2717,7 @@
 	<ScreenID>IDW_Row10Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>204</Y>
 	</Location>
 	<Size>
@@ -2738,7 +2738,7 @@
 	<ScreenID>IDW_Row11Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>220</Y>
 	</Location>
 	<Size>
@@ -2757,7 +2757,7 @@
 	<ScreenID>IDW_Row11Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>220</Y>
 	</Location>
 	<Size>
@@ -2778,7 +2778,7 @@
 	<ScreenID>IDW_Row12Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>236</Y>
 	</Location>
 	<Size>
@@ -2797,7 +2797,7 @@
 	<ScreenID>IDW_Row12Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>236</Y>
 	</Location>
 	<Size>
@@ -2818,7 +2818,7 @@
 	<ScreenID>IDW_Row13Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>252</Y>
 	</Location>
 	<Size>
@@ -2837,7 +2837,7 @@
 	<ScreenID>IDW_Row13Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>252</Y>
 	</Location>
 	<Size>
@@ -2858,7 +2858,7 @@
 	<ScreenID>IDW_Row14Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>268</Y>
 	</Location>
 	<Size>
@@ -2877,7 +2877,7 @@
 	<ScreenID>IDW_Row14Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>268</Y>
 	</Location>
 	<Size>
@@ -2898,7 +2898,7 @@
 	<ScreenID>IDW_Row15Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>284</Y>
 	</Location>
 	<Size>
@@ -2917,7 +2917,7 @@
 	<ScreenID>IDW_Row15Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>284</Y>
 	</Location>
 	<Size>
@@ -2938,7 +2938,7 @@
 	<ScreenID>IDW_Row16Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>300</Y>
 	</Location>
 	<Size>
@@ -2957,7 +2957,7 @@
 	<ScreenID>IDW_Row16Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>300</Y>
 	</Location>
 	<Size>
@@ -2977,7 +2977,7 @@
 	<ScreenID>IDW_Row17Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>316</Y>
 	</Location>
 	<Size>
@@ -2996,7 +2996,7 @@
 	<ScreenID>IDW_Row17Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>316</Y>
 	</Location>
 	<Size>
@@ -3016,7 +3016,7 @@
 	<ScreenID>IDW_Row18Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>332</Y>
 	</Location>
 	<Size>
@@ -3035,7 +3035,7 @@
 	<ScreenID>IDW_Row18Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>332</Y>
 	</Location>
 	<Size>
@@ -3055,7 +3055,7 @@
 	<ScreenID>IDW_Row19Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>348</Y>
 	</Location>
 	<Size>
@@ -3074,7 +3074,7 @@
 	<ScreenID>IDW_Row19Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>348</Y>
 	</Location>
 	<Size>
@@ -3094,7 +3094,7 @@
 	<ScreenID>IDW_Row20Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>364</Y>
 	</Location>
 	<Size>
@@ -3113,7 +3113,7 @@
 	<ScreenID>IDW_Row20Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>364</Y>
 	</Location>
 	<Size>
@@ -3133,7 +3133,7 @@
 	<ScreenID>IDW_Row21Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>380</Y>
 	</Location>
 	<Size>
@@ -3152,7 +3152,7 @@
 	<ScreenID>IDW_Row21Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>380</Y>
 	</Location>
 	<Size>
@@ -3172,7 +3172,7 @@
 	<ScreenID>IDW_Row22Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>396</Y>
 	</Location>
 	<Size>
@@ -3191,7 +3191,7 @@
 	<ScreenID>IDW_Row22Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>396</Y>
 	</Location>
 	<Size>
@@ -3211,7 +3211,7 @@
 	<ScreenID>IDW_Row23Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>412</Y>
 	</Location>
 	<Size>
@@ -3230,7 +3230,7 @@
 	<ScreenID>IDW_Row23Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>412</Y>
 	</Location>
 	<Size>
@@ -3250,7 +3250,7 @@
 	<ScreenID>IDW_Row24Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>428</Y>
 	</Location>
 	<Size>
@@ -3269,7 +3269,7 @@
 	<ScreenID>IDW_Row24Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>428</Y>
 	</Location>
 	<Size>
@@ -3289,7 +3289,7 @@
 	<ScreenID>IDW_Row25Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>444</Y>
 	</Location>
 	<Size>
@@ -3308,7 +3308,7 @@
 	<ScreenID>IDW_Row25Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>444</Y>
 	</Location>
 	<Size>
@@ -3328,7 +3328,7 @@
 	<ScreenID>IDW_Row26Col3Stat</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>460</Y>
 	</Location>
 	<Size>
@@ -3347,7 +3347,7 @@
 	<ScreenID>IDW_Row26Col3Value</ScreenID>
 	<RelativePosition>true</RelativePosition>
 	<Location>
-		<X>320</X>
+		<X>260</X>
 		<Y>460</Y>
 	</Location>
 	<Size>
@@ -3664,7 +3664,7 @@
 		<Y>12</Y>
 	</Location>
 	<Size>
-		<CX>500</CX>
+		<CX>700</CX>
 		<CY>20</CY>
 	</Size>
 	<Style_Border>false</Style_Border>
@@ -3678,7 +3678,7 @@
 		<Y>0</Y>
 	</Location>
 	<Size>
-		<CX>500</CX>
+		<CX>700</CX>
 		<CY>40</CY>
 	</Size>
 	<Style_VScroll>false</Style_VScroll>
@@ -3718,10 +3718,10 @@
     <DrawTemplate>WDT_Inner</DrawTemplate>
 	<Location>
 		<X>38</X>
-		<Y>0</Y>
+		<Y>2</Y>
 	</Location>
 	<Size>
-		<CX>500</CX>
+		<CX>700</CX>
 		<CY>20</CY>
 	</Size>
 	<Style_Border>false</Style_Border>
@@ -3732,10 +3732,10 @@
 	<ScreenID>IDW_Socket_Slot_1_Screen</ScreenID>
 	<Location>
 		<X>0</X>
-		<Y>600</Y>
+		<Y>0</Y>
 	</Location>
 	<Size>
-		<CX>500</CX>
+		<CX>700</CX>
 		<CY>24</CY>
 	</Size>
 	<Style_VScroll>false</Style_VScroll>
@@ -3776,7 +3776,7 @@
 		<Y>2</Y>
 	</Location>
 	<Size>
-		<CX>500</CX>
+		<CX>700</CX>
 		<CY>20</CY>
 	</Size>
 	<Style_Border>false</Style_Border>
@@ -3787,10 +3787,10 @@
 	<ScreenID>IDW_Socket_Slot_2_Screen</ScreenID>
 	<Location>
 		<X>0</X>
-		<Y>615</Y>
+		<Y>0</Y>
 	</Location>
 	<Size>
-		<CX>500</CX>
+		<CX>700</CX>
 		<CY>24</CY>
 	</Size>
 	<Style_VScroll>false</Style_VScroll>
@@ -3831,7 +3831,7 @@
 		<Y>2</Y>
 	</Location>
 	<Size>
-		<CX>500</CX>
+		<CX>700</CX>
 		<CY>20</CY>
 	</Size>
 	<Style_Border>false</Style_Border>
@@ -3842,10 +3842,10 @@
 	<ScreenID>IDW_Socket_Slot_3_Screen</ScreenID>
 	<Location>
 		<X>0</X>
-		<Y>630</Y>
+		<Y>0</Y>
 	</Location>
 	<Size>
-		<CX>500</CX>
+		<CX>700</CX>
 		<CY>24</CY>
 	</Size>
 	<Style_VScroll>false</Style_VScroll>
@@ -3886,7 +3886,7 @@
 		<Y>2</Y>
 	</Location>
 	<Size>
-		<CX>500</CX>
+		<CX>700</CX>
 		<CY>20</CY>
 	</Size>
 	<Style_Border>false</Style_Border>
@@ -3897,10 +3897,10 @@
 	<ScreenID>IDW_Socket_Slot_4_Screen</ScreenID>
 	<Location>
 		<X>0</X>
-		<Y>645</Y>
+		<Y>0</Y>
 	</Location>
 	<Size>
-		<CX>500</CX>
+		<CX>700</CX>
 		<CY>24</CY>
 	</Size>
 	<Style_VScroll>false</Style_VScroll>
@@ -3941,7 +3941,7 @@
 		<Y>2</Y>
 	</Location>
 	<Size>
-		<CX>500</CX>
+		<CX>700</CX>
 		<CY>20</CY>
 	</Size>
 	<Style_Border>false</Style_Border>
@@ -3952,10 +3952,10 @@
 	<ScreenID>IDW_Socket_Slot_5_Screen</ScreenID>
 	<Location>
 		<X>0</X>
-		<Y>660</Y>
+		<Y>0</Y>
 	</Location>
 	<Size>
-		<CX>500</CX>
+		<CX>700</CX>
 		<CY>24</CY>
 	</Size>
 	<Style_VScroll>false</Style_VScroll>
@@ -3996,7 +3996,7 @@
 		<Y>2</Y>
 	</Location>
 	<Size>
-		<CX>500</CX>
+		<CX>700</CX>
 		<CY>20</CY>
 	</Size>
 	<Style_Border>false</Style_Border>
@@ -4007,10 +4007,10 @@
 	<ScreenID>IDW_Socket_Slot_6_Screen</ScreenID>
 	<Location>
 		<X>0</X>
-		<Y>675</Y>
+		<Y>0</Y>
 	</Location>
 	<Size>
-		<CX>500</CX>
+		<CX>700</CX>
 		<CY>24</CY>
 	</Size>
 	<Style_VScroll>false</Style_VScroll>
@@ -4032,7 +4032,7 @@
     <Style_VScroll>true</Style_VScroll>
     <AutoStretch>true</AutoStretch>
     <LeftAnchorOffset>10</LeftAnchorOffset>
-    <TopAnchorOffset>700</TopAnchorOffset>
+    <TopAnchorOffset>0</TopAnchorOffset>
     <RightAnchorOffset>0</RightAnchorOffset>
     <BottomAnchorOffset>3</BottomAnchorOffset>
     <RightAnchorToLeft>false</RightAnchorToLeft>
@@ -4130,12 +4130,17 @@
       <G>255</G>
       <B>0</B>
     </TabTextActiveColor>
-    <Style_VScroll>true</Style_VScroll>
-    <Style_AutoVScroll>true</Style_AutoVScroll>
     <DrawTemplate>WDT_Def</DrawTemplate>
     <Pieces>IDW_MadeBy</Pieces>
     <Pieces>IDW_ItemDescription</Pieces>
     <Pieces>IDW_IconButton</Pieces>
+    <Pieces>Screen:IDW_Appearance_Socket_Screen</Pieces>
+    <Pieces>Screen:IDW_Socket_Slot_1_Screen</Pieces>
+    <Pieces>Screen:IDW_Socket_Slot_2_Screen</Pieces>
+    <Pieces>Screen:IDW_Socket_Slot_3_Screen</Pieces>   
+    <Pieces>Screen:IDW_Socket_Slot_4_Screen</Pieces>
+    <Pieces>Screen:IDW_Socket_Slot_5_Screen</Pieces>
+    <Pieces>Screen:IDW_Socket_Slot_6_Screen</Pieces>
     <Pieces>IDW_ModButton</Pieces>
 	<Pieces>IDW_ItemInfo1</Pieces>
 	<Pieces>IDW_ItemInfo2</Pieces>
@@ -4327,14 +4332,7 @@
     <Pieces>IDW_Heroic11</Pieces>
     <Pieces>IDW_Heroic12</Pieces>
     <Pieces>IDW_Heroic13</Pieces>
-    <Pieces>Screen:IDW_Appearance_Socket_Screen</Pieces>
-    <Pieces>Screen:IDW_Socket_Slot_1_Screen</Pieces>
-    <Pieces>Screen:IDW_Socket_Slot_2_Screen</Pieces>
-    <Pieces>Screen:IDW_Socket_Slot_3_Screen</Pieces>   
-    <Pieces>Screen:IDW_Socket_Slot_4_Screen</Pieces>
-    <Pieces>Screen:IDW_Socket_Slot_5_Screen</Pieces>
-    <Pieces>Screen:IDW_Socket_Slot_6_Screen</Pieces>
-
+    
     <Location>
       <X>0</X>
       <Y>22</Y>
@@ -4395,10 +4393,10 @@
       <Y>80</Y>
     </Location>
     <Size>
-      <CX>700</CX>
-      <CY>530</CY>
+      <CX>400</CX>
+      <CY>230</CY>
     </Size>
-    <Style_VScroll>true</Style_VScroll>
+    <Style_VScroll>false</Style_VScroll>
     <Style_HScroll>false</Style_HScroll>
     <Style_Transparent>false</Style_Transparent>
     <TooltipReference>This is an Item Display window</TooltipReference>
