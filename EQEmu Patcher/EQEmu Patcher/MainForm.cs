@@ -485,6 +485,7 @@ namespace EQEmu_Patcher
                 "ActorEffects\\",
                 "SpellEffects\\",
 		"EnvEmitterEffects\\"
+		"uiresources\\"
 
             };
 
