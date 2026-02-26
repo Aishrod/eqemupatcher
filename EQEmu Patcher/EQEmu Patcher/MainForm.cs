@@ -51,7 +51,34 @@ namespace EQEmu_Patcher
         VersionTypes currentVersion;
 
        // TaskbarItemInfo tii = new TaskbarItemInfo();
-        public MainForm()
+        
+        // Tracks whether an update is available (filelist mismatch or self-update needed)
+        private bool _updateAvailable = false;
+
+        private bool IsUpdateAvailable()
+        {
+            // filelist can be null early during load
+            if (isNeedingSelfUpdate) return true;
+            if (filelist == null) return false;
+            return filelist.version != IniLibrary.instance.LastPatchedVersion;
+        }
+
+        private void UpdatePlayAndPatchButtonColors(bool updateAvailable)
+        {
+            // Ensure BackColor is respected under visual styles
+            btnStart.UseVisualStyleBackColor = false;
+
+            // Patch button: red when update exists
+            btnCheck.BackColor = updateAvailable ? Color.Red : SystemColors.Control;
+
+            // Play button: red when NO update exists (up-to-date)
+            btnStart.BackColor = updateAvailable ? SystemColors.Control : Color.Red;
+
+            // Improve contrast when Play is red
+            btnStart.ForeColor = updateAvailable ? SystemColors.ControlText : Color.White;
+        }
+
+public MainForm()
         {
             InitializeComponent();
         }
@@ -197,14 +224,27 @@ namespace EQEmu_Patcher
             StatusLibrary.SubscribePatchState(new StatusLibrary.PatchStateHandler((bool isPatchGoing) => {
                 Invoke((MethodInvoker)delegate {
 
-                    btnCheck.BackColor = SystemColors.Control;
                     if (isPatchGoing)
                     {
                         btnCheck.Text = "Cancel";
+
+                        // While patching, neutralize Play and prevent launching
+                        btnStart.Enabled = false;
+                        btnStart.UseVisualStyleBackColor = false;
+                        btnStart.BackColor = SystemColors.Control;
+                        btnStart.ForeColor = SystemColors.ControlText;
                         return;
                     }
 
                     btnCheck.Text = "Patch";
+                    btnStart.Enabled = true;
+
+                    // Restore correct colors after patching/cancel
+                    _updateAvailable = IsUpdateAvailable();
+                    if (!isPendingPatch)
+                    {
+                        UpdatePlayAndPatchButtonColors(_updateAvailable);
+                    }
                 });
             }));
 
@@ -258,16 +298,13 @@ namespace EQEmu_Patcher
                 filelist = deserializer.Deserialize<FileList>(input);
             }
 
-            if (filelist.version != IniLibrary.instance.LastPatchedVersion)
+            _updateAvailable = IsUpdateAvailable();
+
+            if (!isPendingPatch)
             {
-                if (!isPendingPatch)
-                {
-                    btnCheck.BackColor = Color.Red;
-                }
-            } else
-            {
-                if (isAutoPlay) PlayGame();
+                UpdatePlayAndPatchButtonColors(_updateAvailable);
             }
+            if (!_updateAvailable && isAutoPlay) PlayGame();
             isLoading = false;
             if (File.Exists("eqemupatcher.png"))
             {
@@ -641,6 +678,16 @@ if (myHash != "" && isNeedingSelfUpdate)
             StatusLibrary.Log($"Complete! Patched {generateSize(patchedBytes)} in {elapsed} seconds. Press Play to begin.");
             IniLibrary.instance.LastPatchedVersion = filelist.version;
             IniLibrary.Save();
+
+            // Now up-to-date: Patch should be neutral, Play should be red
+            _updateAvailable = false;
+            Invoke((MethodInvoker)delegate {
+                if (!isPendingPatch)
+                {
+                    UpdatePlayAndPatchButtonColors(false);
+                }
+            });
+
             return;
         }
 
