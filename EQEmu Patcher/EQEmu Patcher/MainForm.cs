@@ -499,7 +499,8 @@ namespace EQEmu_Patcher
             var nameOnlyFiles = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
                 "nektulos.old",
-                "nektulosa.zon"
+                "nektulosa.zon",
+		"actoremittersnew.edd"
             };
 
 if (myHash != "" && isNeedingSelfUpdate)
