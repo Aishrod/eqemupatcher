@@ -256,7 +256,7 @@ namespace EQEmu_Patcher
 
             FileList filelist;
 
-            using (var input = File.OpenText($"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}\filelist.yml"))
+            using (var input = File.OpenText(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.ExecutablePath), "filelist.yml")))
             {
                 var deserializerBuilder = new DeserializerBuilder().WithNamingConvention(new CamelCaseNamingConvention());
 
@@ -463,7 +463,7 @@ namespace EQEmu_Patcher
             StatusLibrary.SetProgress(0);
             FileList filelist;
 
-            using (var input = File.OpenText($"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}\\filelist.yml"))
+            using (var input = File.OpenText(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.ExecutablePath), "filelist.yml")))
             {
                 var deserializerBuilder = new DeserializerBuilder().WithNamingConvention(new CamelCaseNamingConvention());
 
