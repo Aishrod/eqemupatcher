@@ -34,6 +34,9 @@ namespace EQEmu_Patcher
         CancellationTokenSource cts;
         System.Diagnostics.Process process;
 
+        // Tracks remote filelist version so we can color buttons consistently
+        string remoteFilelistVersion;
+
         //Note that for supported versions, the 3 letter suffix is needed on the filelist_###.yml file.
         public static List<VersionTypes> supportedClients = new List<VersionTypes> { //Supported clients for patcher
             //VersionTypes.Unknown, //unk
@@ -55,6 +58,27 @@ namespace EQEmu_Patcher
         {
             InitializeComponent();
         }
+
+        private bool IsUpdateAvailable()
+        {
+            if (isNeedingSelfUpdate) return true;
+            if (!string.IsNullOrEmpty(remoteFilelistVersion) && remoteFilelistVersion != IniLibrary.instance.LastPatchedVersion) return true;
+            return false;
+        }
+
+        private void UpdatePlayAndPatchButtonColors(bool updateAvailable)
+        {
+            // Allow BackColor to show (visual styles can override otherwise)
+            btnStart.UseVisualStyleBackColor = false;
+
+            // Patch button: red when update is available
+            btnCheck.BackColor = updateAvailable ? Color.Red : SystemColors.Control;
+
+            // Play button: red when NO update is available
+            btnStart.BackColor = updateAvailable ? SystemColors.Control : Color.Red;
+            btnStart.ForeColor = updateAvailable ? SystemColors.ControlText : Color.White;
+        }
+
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
@@ -197,59 +221,42 @@ namespace EQEmu_Patcher
             StatusLibrary.SubscribePatchState(new StatusLibrary.PatchStateHandler((bool isPatchGoing) => {
                 Invoke((MethodInvoker)delegate {
 
-                    btnCheck.BackColor = SystemColors.Control;
                     if (isPatchGoing)
                     {
                         btnCheck.Text = "Cancel";
+                        btnStart.Enabled = false;
+
+                        // Keep Play neutral while patching
+                        btnStart.UseVisualStyleBackColor = false;
+                        btnStart.BackColor = SystemColors.Control;
+                        btnStart.ForeColor = SystemColors.ControlText;
                         return;
                     }
 
                     btnCheck.Text = "Patch";
+                    btnStart.Enabled = true;
+
+                    // Re-apply correct colors when patching stops (finish/cancel)
+                    UpdatePlayAndPatchButtonColors(IsUpdateAvailable());
                 });
             }));
 
             string webUrl = $"{filelistUrl}{suffix}/filelist_{suffix}.yml";
 
             string response = await DownloadFile(cts, webUrl, "filelist.yml");
-            if (response != "")
-            {
-                webUrl = $"{filelistUrl}/filelist_{ suffix}.yml";
-                response = await DownloadFile(cts, webUrl, "filelist.yml");
-                if (response != "")
-                {
-                    MessageBox.Show("Failed to fetch filelist from " + webUrl + ": " + response);
-                    this.Close();
-                    return;
-                }
-            }
-
-            string url = $"{patcherUrl}{fileName}-hash.txt";
-            try
-            {
-                var data = await Download(cts, url);
-                response = System.Text.Encoding.Default.GetString(data).ToUpper();
-            } catch (Exception ex)
-            {
-                Console.WriteLine($"Failed to fetch patch from {url}: {ex.Message}");
-            }
-
-            if (response != "")
+                        if (response != "")
             {
                 myHash = UtilityLibrary.GetMD5(Application.ExecutablePath);
                 if (response != myHash)
                 {
                     isNeedingSelfUpdate = true;
                     //StatusLibrary.Log($"{myHash} vs {response} selfpatch");
-                    if (!isPendingPatch)
-                    {
-                        btnCheck.BackColor = Color.Red;
-                    }
                 }
             }
 
             FileList filelist;
 
-            using (var input = File.OpenText($"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}\\filelist.yml"))
+            using (var input = File.OpenText($"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}\filelist.yml"))
             {
                 var deserializerBuilder = new DeserializerBuilder().WithNamingConvention(new CamelCaseNamingConvention());
 
@@ -258,16 +265,17 @@ namespace EQEmu_Patcher
                 filelist = deserializer.Deserialize<FileList>(input);
             }
 
-            if (filelist.version != IniLibrary.instance.LastPatchedVersion)
+            remoteFilelistVersion = filelist.version;
+
+            bool updateAvailable = IsUpdateAvailable();
+
+            if (!isPendingPatch)
             {
-                if (!isPendingPatch)
-                {
-                    btnCheck.BackColor = Color.Red;
-                }
-            } else
-            {
-                if (isAutoPlay) PlayGame();
+                UpdatePlayAndPatchButtonColors(updateAvailable);
             }
+
+            if (!updateAvailable && isAutoPlay) PlayGame();
+
             isLoading = false;
             if (File.Exists("eqemupatcher.png"))
             {
@@ -609,6 +617,8 @@ namespace EQEmu_Patcher
                 }
 
                 StatusLibrary.Log($"Up to date with patch {version}.");
+                remoteFilelistVersion = filelist.version;
+                Invoke((MethodInvoker)delegate { UpdatePlayAndPatchButtonColors(IsUpdateAvailable()); });
                 return;
             }
 
@@ -616,6 +626,8 @@ namespace EQEmu_Patcher
             StatusLibrary.Log($"Complete! Patched {generateSize(patchedBytes)} in {elapsed} seconds. Press Play to begin.");
             IniLibrary.instance.LastPatchedVersion = filelist.version;
             IniLibrary.Save();
+            remoteFilelistVersion = filelist.version;
+            Invoke((MethodInvoker)delegate { UpdatePlayAndPatchButtonColors(IsUpdateAvailable()); });
             return;
         }
 
