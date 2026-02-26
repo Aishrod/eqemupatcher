@@ -55,6 +55,9 @@ namespace EQEmu_Patcher
         // Tracks whether an update is available (filelist mismatch or self-update needed)
         private bool _updateAvailable = false;
 
+        // Holds the currently loaded filelist.yml data (may be null early during load)
+        private FileList filelist;
+
         private bool IsUpdateAvailable()
         {
             // filelist can be null early during load
@@ -286,8 +289,6 @@ public MainForm()
                     }
                 }
             }
-
-            FileList filelist;
 
             using (var input = File.OpenText($"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}\\filelist.yml"))
             {
