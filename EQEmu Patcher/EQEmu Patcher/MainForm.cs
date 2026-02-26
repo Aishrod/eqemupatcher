@@ -34,6 +34,9 @@ namespace EQEmu_Patcher
         CancellationTokenSource cts;
         System.Diagnostics.Process process;
 
+        // Tracks remote filelist version so we can color buttons consistently
+        string remoteFilelistVersion;
+
         //Note that for supported versions, the 3 letter suffix is needed on the filelist_###.yml file.
         public static List<VersionTypes> supportedClients = new List<VersionTypes> { //Supported clients for patcher
             //VersionTypes.Unknown, //unk
@@ -51,40 +54,31 @@ namespace EQEmu_Patcher
         VersionTypes currentVersion;
 
        // TaskbarItemInfo tii = new TaskbarItemInfo();
-        
-        // Tracks whether an update is available (filelist mismatch or self-update needed)
-        private bool _updateAvailable = false;
-
-        // Holds the currently loaded filelist.yml data (may be null early during load)
-        private FileList filelist;
+        public MainForm()
+        {
+            InitializeComponent();
+        }
 
         private bool IsUpdateAvailable()
         {
-            // filelist can be null early during load
             if (isNeedingSelfUpdate) return true;
-            if (filelist == null) return false;
-            return filelist.version != IniLibrary.instance.LastPatchedVersion;
+            if (!string.IsNullOrEmpty(remoteFilelistVersion) && remoteFilelistVersion != IniLibrary.instance.LastPatchedVersion) return true;
+            return false;
         }
 
         private void UpdatePlayAndPatchButtonColors(bool updateAvailable)
         {
-            // Ensure BackColor is respected under visual styles
+            // Allow BackColor to show (visual styles can override otherwise)
             btnStart.UseVisualStyleBackColor = false;
-            btnCheck.UseVisualStyleBackColor = false;
 
-            // Patch button: red when update exists (needs patch)
+            // Patch button: red when update is available
             btnCheck.BackColor = updateAvailable ? Color.Red : SystemColors.Control;
-            btnCheck.ForeColor = updateAvailable ? Color.White : SystemColors.ControlText;
 
-            // Play button: red when NO update exists (up-to-date)
+            // Play button: red when NO update is available
             btnStart.BackColor = updateAvailable ? SystemColors.Control : Color.Red;
             btnStart.ForeColor = updateAvailable ? SystemColors.ControlText : Color.White;
         }
 
-public MainForm()
-        {
-            InitializeComponent();
-        }
 
         private async void MainForm_Load(object sender, EventArgs e)
         {
@@ -230,9 +224,9 @@ public MainForm()
                     if (isPatchGoing)
                     {
                         btnCheck.Text = "Cancel";
-
-                        // While patching, neutralize Play and prevent launching
                         btnStart.Enabled = false;
+
+                        // Keep Play neutral while patching
                         btnStart.UseVisualStyleBackColor = false;
                         btnStart.BackColor = SystemColors.Control;
                         btnStart.ForeColor = SystemColors.ControlText;
@@ -242,69 +236,46 @@ public MainForm()
                     btnCheck.Text = "Patch";
                     btnStart.Enabled = true;
 
-                    // Restore correct colors after patching/cancel
-                    _updateAvailable = IsUpdateAvailable();
-                    if (!isPendingPatch)
-                    {
-                        UpdatePlayAndPatchButtonColors(_updateAvailable);
-                    }
+                    // Re-apply correct colors when patching stops (finish/cancel)
+                    UpdatePlayAndPatchButtonColors(IsUpdateAvailable());
                 });
             }));
 
             string webUrl = $"{filelistUrl}{suffix}/filelist_{suffix}.yml";
 
             string response = await DownloadFile(cts, webUrl, "filelist.yml");
-            if (response != "")
-            {
-                webUrl = $"{filelistUrl}/filelist_{ suffix}.yml";
-                response = await DownloadFile(cts, webUrl, "filelist.yml");
-                if (response != "")
-                {
-                    MessageBox.Show("Failed to fetch filelist from " + webUrl + ": " + response);
-                    this.Close();
-                    return;
-                }
-            }
-
-            string url = $"{patcherUrl}{fileName}-hash.txt";
-            try
-            {
-                var data = await Download(cts, url);
-                response = System.Text.Encoding.Default.GetString(data).ToUpper();
-            } catch (Exception ex)
-            {
-                Console.WriteLine($"Failed to fetch patch from {url}: {ex.Message}");
-            }
-
-            if (response != "")
+                        if (response != "")
             {
                 myHash = UtilityLibrary.GetMD5(Application.ExecutablePath);
                 if (response != myHash)
                 {
                     isNeedingSelfUpdate = true;
                     //StatusLibrary.Log($"{myHash} vs {response} selfpatch");
-                    if (!isPendingPatch)
-                    {
-                        btnCheck.BackColor = Color.Red;
-                    }
                 }
             }
 
-            using (var input = File.OpenText($"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}\\filelist.yml"))
+            FileList filelist;
+
+            using (var input = File.OpenText(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.ExecutablePath), "filelist.yml")))
             {
                 var deserializerBuilder = new DeserializerBuilder().WithNamingConvention(new CamelCaseNamingConvention());
 
                 var deserializer = deserializerBuilder.Build();
-                this.filelist = deserializer.Deserialize<FileList>(input);
+
+                filelist = deserializer.Deserialize<FileList>(input);
             }
 
-            _updateAvailable = IsUpdateAvailable();
+            remoteFilelistVersion = filelist.version;
+
+            bool updateAvailable = IsUpdateAvailable();
 
             if (!isPendingPatch)
             {
-                UpdatePlayAndPatchButtonColors(_updateAvailable);
+                UpdatePlayAndPatchButtonColors(updateAvailable);
             }
-            if (!_updateAvailable && isAutoPlay) PlayGame();
+
+            if (!updateAvailable && isAutoPlay) PlayGame();
+
             isLoading = false;
             if (File.Exists("eqemupatcher.png"))
             {
@@ -490,24 +461,22 @@ public MainForm()
             Stopwatch start = Stopwatch.StartNew();
             StatusLibrary.Log($"Patching with patcher version {version}...");
             StatusLibrary.SetProgress(0);
-            FileList patchFileList;
-            // Load filelist.yml for patch operations (and keep the MainForm field in sync)
-            using (var input = File.OpenText($"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}\\filelist.yml"))
+            FileList filelist;
+
+            using (var input = File.OpenText(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.ExecutablePath), "filelist.yml")))
             {
                 var deserializerBuilder = new DeserializerBuilder().WithNamingConvention(new CamelCaseNamingConvention());
 
                 var deserializer = deserializerBuilder.Build();
-                patchFileList = deserializer.Deserialize<FileList>(input);
-            }
 
-            // Keep MainForm's filelist in sync with the patch list we just loaded
-            this.filelist = patchFileList;
+                filelist = deserializer.Deserialize<FileList>(input);
+            }
 
             double totalBytes = 0; //total patch size
             double currentBytes = 1; // current patched size
             double patchedBytes = 0; // how many files patched size
 
-            foreach (var entry in patchFileList.downloads)
+            foreach (var entry in filelist.downloads)
             {
                 totalBytes += entry.size;
             }
@@ -528,21 +497,19 @@ public MainForm()
 
             };
 
-            
-            // ============================================================
-            // Name-only FILES (download only if missing; skip MD5)
-            // ============================================================
-            // For these specific files in the client root, the patcher will:
-            //  - Download if missing
-            //  - NEVER re-download once the file exists (regardless of MD5)
-            var nameOnlyFiles = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            // ------------------------------------------------------------
+            // Name-only file logic: if already present, skip MD5 + download
+            // (used for legacy / user-managed files in the EverQuest root)
+            // ------------------------------------------------------------
+            var nameOnlyFiles = new[]
             {
                 "nektulos.old",
                 "nektulosa.zon",
-		"actoremittersnew.edd"
+                "actoremittersnew.edd",
             };
 
-if (myHash != "" && isNeedingSelfUpdate)
+
+            if (myHash != "" && isNeedingSelfUpdate)
             {
                 StatusLibrary.Log("Self update needed, starting with self patch...");
                 string url = $"{patcherUrl}/{fileName}.exe";
@@ -567,8 +534,8 @@ if (myHash != "" && isNeedingSelfUpdate)
 
                 StatusLibrary.Log("Resuming patching...");
             }
-            if (!patchFileList.downloadprefix.EndsWith("/")) patchFileList.downloadprefix += "/";
-            foreach (var entry in patchFileList.downloads)
+            if (!filelist.downloadprefix.EndsWith("/")) filelist.downloadprefix += "/";
+            foreach (var entry in filelist.downloads)
             {
                 if (isPatchCancelled)
                 {
@@ -586,18 +553,21 @@ if (myHash != "" && isNeedingSelfUpdate)
                     continue;
                 }
 
-
+                
                 // ------------------------------------------------------------
                 // Name-only file logic: if already present, skip MD5 + download
                 // ------------------------------------------------------------
-                var fileNameOnly = System.IO.Path.GetFileName(path);
-                if (nameOnlyFiles.Contains(fileNameOnly) && File.Exists(path))
+                bool isNameOnlyFile = nameOnlyFiles.Any(f =>
+                    string.Equals(path, f, StringComparison.OrdinalIgnoreCase)
+                );
+
+                if (isNameOnlyFile && File.Exists(path))
                 {
                     currentBytes += entry.size;
                     continue;
                 }
 
-                // ------------------------------------------------------------
+// ------------------------------------------------------------
                 // Name-only folder logic: if already present, skip MD5 + download
                 // ------------------------------------------------------------
                 bool isNameOnly = nameOnlyFolders.Any(f =>
@@ -621,7 +591,7 @@ if (myHash != "" && isNeedingSelfUpdate)
                     Console.WriteLine($"{path} {md5} vs {entry.md5}");
                 }
 
-                string url = patchFileList.downloadprefix + entry.name.Replace("\\", "/");
+                string url = filelist.downloadprefix + entry.name.Replace("\\", "/");
 
                 string resp = await DownloadFile(cts, url, entry.name);
                 if (resp != "")
@@ -640,9 +610,9 @@ if (myHash != "" && isNeedingSelfUpdate)
                 patchedBytes += entry.size;
             }
 
-            if (patchFileList.deletes != null && patchFileList.deletes.Count > 0)
+            if (filelist.deletes != null && filelist.deletes.Count > 0)
             {
-                foreach (var entry in patchFileList.deletes)
+                foreach (var entry in filelist.deletes)
                 {
                     if (isPatchCancelled)
                     {
@@ -666,30 +636,24 @@ if (myHash != "" && isNeedingSelfUpdate)
             StatusLibrary.SetProgress(10000);
             if (patchedBytes == 0)
             {
-                string version = patchFileList.version;
+                string version = filelist.version;
                 if (version.Length >= 8)
                 {
                     version = version.Substring(0, 8);
                 }
 
                 StatusLibrary.Log($"Up to date with patch {version}.");
+                remoteFilelistVersion = filelist.version;
+                Invoke((MethodInvoker)delegate { UpdatePlayAndPatchButtonColors(IsUpdateAvailable()); });
                 return;
             }
 
             string elapsed = start.Elapsed.ToString("ss\\.ff");
             StatusLibrary.Log($"Complete! Patched {generateSize(patchedBytes)} in {elapsed} seconds. Press Play to begin.");
-            IniLibrary.instance.LastPatchedVersion = patchFileList.version;
+            IniLibrary.instance.LastPatchedVersion = filelist.version;
             IniLibrary.Save();
-
-            // Now up-to-date: Patch should be neutral, Play should be red
-            _updateAvailable = false;
-            Invoke((MethodInvoker)delegate {
-                if (!isPendingPatch)
-                {
-                    UpdatePlayAndPatchButtonColors(false);
-                }
-            });
-
+            remoteFilelistVersion = filelist.version;
+            Invoke((MethodInvoker)delegate { UpdatePlayAndPatchButtonColors(IsUpdateAvailable()); });
             return;
         }
 
