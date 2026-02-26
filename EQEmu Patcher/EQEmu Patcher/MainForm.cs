@@ -37,93 +37,6 @@ namespace EQEmu_Patcher
         // Tracks remote filelist version so we can color buttons consistently
         string remoteFilelistVersion;
 
-        // Tracks whether the local client actually needs any patch actions (downloads/deletes)
-        bool hasPendingClientPatch;
-
-        private bool ComputePendingClientPatch(FileList filelist)
-        {
-            if (filelist == null) return false;
-
-            // Keep these in sync with AsyncPatch()
-            var nameOnlyFolders = new[]
-            {
-                "ActorEffects\\",
-                "SpellEffects\\",
-                "EnvEmitterEffects\\",
-                "uiresources\\"
-            };
-
-            var nameOnlyFiles = new[]
-            {
-                "nektulos.old",
-                "nektulosa.zon",
-                "actoremittersnew.edd",
-            };
-
-            // --- downloads ---
-            if (filelist.downloads != null)
-            {
-                foreach (var entry in filelist.downloads)
-                {
-                    var path = (entry.name ?? string.Empty).Replace("/", "\\");
-                    if (string.IsNullOrWhiteSpace(path)) continue;
-                    if (!UtilityLibrary.IsPathChild(path)) continue;
-
-                    bool isNameOnlyFile = nameOnlyFiles.Any(f =>
-                        string.Equals(path, f, StringComparison.OrdinalIgnoreCase)
-                    );
-
-                    if (isNameOnlyFile)
-                    {
-                        // If missing, it needs patching; if present, we consider it satisfied.
-                        if (!File.Exists(path)) return true;
-                        continue;
-                    }
-
-                    bool isNameOnlyFolder = nameOnlyFolders.Any(f =>
-                        path.StartsWith(f, StringComparison.OrdinalIgnoreCase)
-                    );
-
-                    if (isNameOnlyFolder)
-                    {
-                        if (!File.Exists(path)) return true;
-                        continue;
-                    }
-
-                    if (!File.Exists(path)) return true;
-
-                    // Fast check: size mismatch means needs patch
-                    try
-                    {
-                        var fi = new FileInfo(path);
-                        if (fi.Length != entry.size) return true;
-                    }
-                    catch
-                    {
-                        return true;
-                    }
-
-                    // Accurate check: MD5
-                    var md5 = UtilityLibrary.GetMD5(path);
-                    if (!string.Equals(md5, entry.md5, StringComparison.OrdinalIgnoreCase)) return true;
-                }
-            }
-
-            // --- deletes ---
-            if (filelist.deletes != null)
-            {
-                foreach (var entry in filelist.deletes)
-                {
-                    var path = (entry.name ?? string.Empty).Replace("/", "\\");
-                    if (string.IsNullOrWhiteSpace(path)) continue;
-                    if (!UtilityLibrary.IsPathChild(path)) continue;
-                    if (File.Exists(path)) return true;
-                }
-            }
-
-            return false;
-        }
-
         //Note that for supported versions, the 3 letter suffix is needed on the filelist_###.yml file.
         public static List<VersionTypes> supportedClients = new List<VersionTypes> { //Supported clients for patcher
             //VersionTypes.Unknown, //unk
@@ -148,8 +61,9 @@ namespace EQEmu_Patcher
 
         private bool IsUpdateAvailable()
         {
-            // "Update available" means: patcher self-update OR the local client actually has files pending.
-            return isNeedingSelfUpdate || hasPendingClientPatch;
+            if (isNeedingSelfUpdate) return true;
+            if (!string.IsNullOrEmpty(remoteFilelistVersion) && remoteFilelistVersion != IniLibrary.instance.LastPatchedVersion) return true;
+            return false;
         }
 
         private void UpdatePlayAndPatchButtonColors(bool updateAvailable)
@@ -352,17 +266,6 @@ namespace EQEmu_Patcher
             }
 
             remoteFilelistVersion = filelist.version;
-
-            // Determine whether anything actually needs patching (downloads/deletes),
-            // so button colors reflect REAL patch state (not just version strings).
-            hasPendingClientPatch = ComputePendingClientPatch(filelist);
-
-            // If we're already current (and no self-update), keep the INI version aligned.
-            if (!hasPendingClientPatch && !isNeedingSelfUpdate)
-            {
-                IniLibrary.instance.LastPatchedVersion = filelist.version;
-                IniLibrary.Save();
-            }
 
             bool updateAvailable = IsUpdateAvailable();
 
@@ -740,13 +643,7 @@ namespace EQEmu_Patcher
                 }
 
                 StatusLibrary.Log($"Up to date with patch {version}.");
-                // IMPORTANT: Even if nothing needed downloading (or we skipped downloads because files already exist),
-                // we should still mark the local client as being on this filelist version.
-                // Otherwise the UI will think a patch is always pending and keep Patch red forever.
-                IniLibrary.instance.LastPatchedVersion = filelist.version;
-                IniLibrary.Save();
                 remoteFilelistVersion = filelist.version;
-                hasPendingClientPatch = false;
                 Invoke((MethodInvoker)delegate { UpdatePlayAndPatchButtonColors(IsUpdateAvailable()); });
                 return;
             }
@@ -756,7 +653,6 @@ namespace EQEmu_Patcher
             IniLibrary.instance.LastPatchedVersion = filelist.version;
             IniLibrary.Save();
             remoteFilelistVersion = filelist.version;
-            hasPendingClientPatch = false;
             Invoke((MethodInvoker)delegate { UpdatePlayAndPatchButtonColors(IsUpdateAvailable()); });
             return;
         }
