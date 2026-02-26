@@ -70,14 +70,14 @@ namespace EQEmu_Patcher
         {
             // Ensure BackColor is respected under visual styles
             btnStart.UseVisualStyleBackColor = false;
+            btnCheck.UseVisualStyleBackColor = false;
 
-            // Patch button: red when update exists
+            // Patch button: red when update exists (needs patch)
             btnCheck.BackColor = updateAvailable ? Color.Red : SystemColors.Control;
+            btnCheck.ForeColor = updateAvailable ? Color.White : SystemColors.ControlText;
 
             // Play button: red when NO update exists (up-to-date)
             btnStart.BackColor = updateAvailable ? SystemColors.Control : Color.Red;
-
-            // Improve contrast when Play is red
             btnStart.ForeColor = updateAvailable ? SystemColors.ControlText : Color.White;
         }
 
@@ -295,8 +295,7 @@ public MainForm()
                 var deserializerBuilder = new DeserializerBuilder().WithNamingConvention(new CamelCaseNamingConvention());
 
                 var deserializer = deserializerBuilder.Build();
-
-                filelist = deserializer.Deserialize<FileList>(input);
+                this.filelist = deserializer.Deserialize<FileList>(input);
             }
 
             _updateAvailable = IsUpdateAvailable();
@@ -491,22 +490,24 @@ public MainForm()
             Stopwatch start = Stopwatch.StartNew();
             StatusLibrary.Log($"Patching with patcher version {version}...");
             StatusLibrary.SetProgress(0);
-            FileList filelist;
-
+            FileList patchFileList;
+            // Load filelist.yml for patch operations (and keep the MainForm field in sync)
             using (var input = File.OpenText($"{System.IO.Path.GetDirectoryName(Application.ExecutablePath)}\\filelist.yml"))
             {
                 var deserializerBuilder = new DeserializerBuilder().WithNamingConvention(new CamelCaseNamingConvention());
 
                 var deserializer = deserializerBuilder.Build();
-
-                filelist = deserializer.Deserialize<FileList>(input);
+                patchFileList = deserializer.Deserialize<FileList>(input);
             }
+
+            // Keep MainForm's filelist in sync with the patch list we just loaded
+            this.filelist = patchFileList;
 
             double totalBytes = 0; //total patch size
             double currentBytes = 1; // current patched size
             double patchedBytes = 0; // how many files patched size
 
-            foreach (var entry in filelist.downloads)
+            foreach (var entry in patchFileList.downloads)
             {
                 totalBytes += entry.size;
             }
@@ -566,8 +567,8 @@ if (myHash != "" && isNeedingSelfUpdate)
 
                 StatusLibrary.Log("Resuming patching...");
             }
-            if (!filelist.downloadprefix.EndsWith("/")) filelist.downloadprefix += "/";
-            foreach (var entry in filelist.downloads)
+            if (!patchFileList.downloadprefix.EndsWith("/")) patchFileList.downloadprefix += "/";
+            foreach (var entry in patchFileList.downloads)
             {
                 if (isPatchCancelled)
                 {
@@ -620,7 +621,7 @@ if (myHash != "" && isNeedingSelfUpdate)
                     Console.WriteLine($"{path} {md5} vs {entry.md5}");
                 }
 
-                string url = filelist.downloadprefix + entry.name.Replace("\\", "/");
+                string url = patchFileList.downloadprefix + entry.name.Replace("\\", "/");
 
                 string resp = await DownloadFile(cts, url, entry.name);
                 if (resp != "")
@@ -639,9 +640,9 @@ if (myHash != "" && isNeedingSelfUpdate)
                 patchedBytes += entry.size;
             }
 
-            if (filelist.deletes != null && filelist.deletes.Count > 0)
+            if (patchFileList.deletes != null && patchFileList.deletes.Count > 0)
             {
-                foreach (var entry in filelist.deletes)
+                foreach (var entry in patchFileList.deletes)
                 {
                     if (isPatchCancelled)
                     {
@@ -665,7 +666,7 @@ if (myHash != "" && isNeedingSelfUpdate)
             StatusLibrary.SetProgress(10000);
             if (patchedBytes == 0)
             {
-                string version = filelist.version;
+                string version = patchFileList.version;
                 if (version.Length >= 8)
                 {
                     version = version.Substring(0, 8);
@@ -677,7 +678,7 @@ if (myHash != "" && isNeedingSelfUpdate)
 
             string elapsed = start.Elapsed.ToString("ss\\.ff");
             StatusLibrary.Log($"Complete! Patched {generateSize(patchedBytes)} in {elapsed} seconds. Press Play to begin.");
-            IniLibrary.instance.LastPatchedVersion = filelist.version;
+            IniLibrary.instance.LastPatchedVersion = patchFileList.version;
             IniLibrary.Save();
 
             // Now up-to-date: Patch should be neutral, Play should be red
