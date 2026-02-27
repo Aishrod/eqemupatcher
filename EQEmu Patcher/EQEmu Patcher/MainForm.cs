@@ -401,7 +401,7 @@ catch
 private static string NormalizeRelPath(string rel)
 {
     if (string.IsNullOrWhiteSpace(rel)) return "";
-    return rel.Replace('/', '\').TrimStart('\');
+    return rel.Replace('/', '\\').TrimStart('\\');
 }
 
 private static bool IsNameOnly(string relPath)
@@ -467,7 +467,7 @@ private bool DetermineNeedsPatch(FileList filelist)
 
             // MD5 compare with cache
             var fi = new FileInfo(rel);
-            var key = rel.Replace('\', '/'); // stable key in cache
+            var key = rel.Replace('\\', '/'); // stable key in cache
 
             if (_hashCache.TryGetValue(key, out var cached) &&
                 cached != null &&
