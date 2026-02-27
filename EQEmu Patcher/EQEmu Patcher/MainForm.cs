@@ -37,9 +37,6 @@ namespace EQEmu_Patcher
         // Tracks remote filelist version so we can color buttons consistently
         string remoteFilelistVersion;
 
-
-        // Tracks whether any patch actions are actually required (missing/outdated files or pending deletes)
-        bool needsPatch = false;
         //Note that for supported versions, the 3 letter suffix is needed on the filelist_###.yml file.
         public static List<VersionTypes> supportedClients = new List<VersionTypes> { //Supported clients for patcher
             //VersionTypes.Unknown, //unk
@@ -64,17 +61,15 @@ namespace EQEmu_Patcher
 
         private bool IsUpdateAvailable()
         {
-            // "Update available" should mean: there is something to PATCH (or the patcher itself needs updating).
-            // Do NOT drive UI off version strings alone, because name-only rules can legitimately skip downloads.
             if (isNeedingSelfUpdate) return true;
-            return needsPatch;
+            if (!string.IsNullOrEmpty(remoteFilelistVersion) && remoteFilelistVersion != IniLibrary.instance.LastPatchedVersion) return true;
+            return false;
         }
 
         private void UpdatePlayAndPatchButtonColors(bool updateAvailable)
         {
             // Allow BackColor to show (visual styles can override otherwise)
             btnStart.UseVisualStyleBackColor = false;
-            btnCheck.UseVisualStyleBackColor = false;
 
             // Patch button: red when update is available
             btnCheck.BackColor = updateAvailable ? Color.Red : SystemColors.Control;
@@ -85,81 +80,7 @@ namespace EQEmu_Patcher
         }
 
 
-        
-        private bool ComputeNeedsPatch(FileList filelist)
-        {
-            if (filelist == null || filelist.downloads == null) return false;
-
-            // Same name-only rules used by the patch loop
-            var nameOnlyFolders = new[]
-            {
-                "ActorEffects\\",
-                "SpellEffects\\",
-                "EnvEmitterEffects\\",
-                "uiresources\\"
-            };
-
-            var nameOnlyFiles = new[]
-            {
-                "nektulos.old",
-                "nektulosa.zon",
-                "actoremittersnew.edd",
-            };
-
-            // Any pending deletes means patch is needed
-            if (filelist.deletes != null && filelist.deletes.Count > 0)
-            {
-                foreach (var del in filelist.deletes)
-                {
-                    if (string.IsNullOrWhiteSpace(del.name)) continue;
-                    if (!UtilityLibrary.IsPathChild(del.name)) continue;
-                    if (File.Exists(del.name)) return true;
-                }
-            }
-
-            foreach (var entry in filelist.downloads)
-            {
-                if (entry == null || string.IsNullOrWhiteSpace(entry.name)) continue;
-
-                var path = entry.name.Replace("/", "\\");
-                if (!UtilityLibrary.IsPathChild(path))
-                {
-                    // Ignore anything outside EQ dir
-                    continue;
-                }
-
-                bool isNameOnlyFile = nameOnlyFiles.Any(f =>
-                    string.Equals(path, f, StringComparison.OrdinalIgnoreCase)
-                );
-
-                if (isNameOnlyFile)
-                {
-                    // Only needs patch if missing
-                    if (!File.Exists(path)) return true;
-                    continue;
-                }
-
-                bool isNameOnlyFolder = nameOnlyFolders.Any(f =>
-                    path.StartsWith(f, StringComparison.OrdinalIgnoreCase)
-                );
-
-                if (isNameOnlyFolder)
-                {
-                    // Only needs patch if missing
-                    if (!File.Exists(path)) return true;
-                    continue;
-                }
-
-                // Normal file: missing, size mismatch, or md5 mismatch => needs patch
-                if (!File.Exists(path)) return true;
-                var md5 = UtilityLibrary.GetMD5(path);
-                if (!string.Equals(md5, entry.md5, StringComparison.OrdinalIgnoreCase)) return true;
-            }
-
-            return false;
-        }
-
-private async void MainForm_Load(object sender, EventArgs e)
+        private async void MainForm_Load(object sender, EventArgs e)
         {
             isLoading = true;
             version = Assembly.GetEntryAssembly().GetName().Version.ToString();
@@ -346,11 +267,9 @@ private async void MainForm_Load(object sender, EventArgs e)
 
             remoteFilelistVersion = filelist.version;
 
-            // Determine if anything actually needs patching (missing/outdated files or pending deletes)
-            needsPatch = ComputeNeedsPatch(filelist);
-
             bool updateAvailable = IsUpdateAvailable();
-if (!isPendingPatch)
+
+            if (!isPendingPatch)
             {
                 UpdatePlayAndPatchButtonColors(updateAvailable);
             }
@@ -724,10 +643,7 @@ if (!isPendingPatch)
                 }
 
                 StatusLibrary.Log($"Up to date with patch {version}.");
-                IniLibrary.instance.LastPatchedVersion = filelist.version;
-                IniLibrary.Save();
                 remoteFilelistVersion = filelist.version;
-                needsPatch = false;
                 Invoke((MethodInvoker)delegate { UpdatePlayAndPatchButtonColors(IsUpdateAvailable()); });
                 return;
             }
@@ -737,7 +653,6 @@ if (!isPendingPatch)
             IniLibrary.instance.LastPatchedVersion = filelist.version;
             IniLibrary.Save();
             remoteFilelistVersion = filelist.version;
-            needsPatch = false;
             Invoke((MethodInvoker)delegate { UpdatePlayAndPatchButtonColors(IsUpdateAvailable()); });
             return;
         }
