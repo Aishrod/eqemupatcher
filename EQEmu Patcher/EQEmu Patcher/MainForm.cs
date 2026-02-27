@@ -392,11 +392,6 @@ private void SaveHashCache()
         // ignore cache failures
     }
 }
-catch
-    {
-        // ignore cache failures
-    }
-}
 
 private static string NormalizeRelPath(string rel)
 {
