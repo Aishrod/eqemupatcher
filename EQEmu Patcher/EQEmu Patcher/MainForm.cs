@@ -37,9 +37,35 @@ namespace EQEmu_Patcher
         // Tracks remote filelist version so we can color buttons consistently
         string remoteFilelistVersion;
 
-
-        // Tracks whether any patch actions are actually required (missing/outdated files or pending deletes)
+        // True when local files indicate patch actions are required (missing/MD5 mismatch/pending deletes).
         bool needsPatch = false;
+
+        // Files/folders that should be 'name-only': only require existence (skip MD5).
+        static readonly string[] NameOnlyFolders = new[]
+        {
+            "ActorEffects\\",
+            "SpellEffects\\",
+            "EnvEmitterEffects\\",
+            "uiresources\\"
+        };
+
+        static readonly string[] NameOnlyFiles = new[]
+        {
+            "nektulos.old",
+            "nektulosa.zon",
+            "actoremittersnew.edd",
+        };
+
+        // MD5 cache to avoid re-hashing the whole client on every launch
+        class HashCacheEntry
+        {
+            public long Size { get; set; }
+            public long MTimeUtcTicks { get; set; }
+            public string Md5 { get; set; }
+        }
+
+        Dictionary<string, HashCacheEntry> _hashCache = new Dictionary<string, HashCacheEntry>(StringComparer.OrdinalIgnoreCase);
+
         //Note that for supported versions, the 3 letter suffix is needed on the filelist_###.yml file.
         public static List<VersionTypes> supportedClients = new List<VersionTypes> { //Supported clients for patcher
             //VersionTypes.Unknown, //unk
@@ -63,18 +89,17 @@ namespace EQEmu_Patcher
         }
 
         private bool IsUpdateAvailable()
-        {
-            // "Update available" should mean: there is something to PATCH (or the patcher itself needs updating).
-            // Do NOT drive UI off version strings alone, because name-only rules can legitimately skip downloads.
-            if (isNeedingSelfUpdate) return true;
-            return needsPatch;
-        }
+{
+    // "Update available" means: there is something to patch OR the patcher itself needs updating.
+    // Drive UI off actual file checks (with name-only exceptions), not version strings.
+    if (isNeedingSelfUpdate) return true;
+    return needsPatch;
+}
 
         private void UpdatePlayAndPatchButtonColors(bool updateAvailable)
         {
             // Allow BackColor to show (visual styles can override otherwise)
             btnStart.UseVisualStyleBackColor = false;
-            btnCheck.UseVisualStyleBackColor = false;
 
             // Patch button: red when update is available
             btnCheck.BackColor = updateAvailable ? Color.Red : SystemColors.Control;
@@ -85,89 +110,7 @@ namespace EQEmu_Patcher
         }
 
 
-        
-        private bool ComputeNeedsPatch(FileList filelist)
-        {
-            if (filelist == null || filelist.downloads == null) return false;
-
-            // Same name-only rules used by the patch loop
-            var nameOnlyFolders = new[]
-            {
-                "ActorEffects\\",
-                "SpellEffects\\",
-                "EnvEmitterEffects\\",
-                "uiresources\\"
-            };
-
-            var nameOnlyFiles = new[]
-            {
-                "nektulos.old",
-                "nektulosa.zon",
-                "actoremittersnew.edd",
-            };
-
-            // Any pending deletes means patch is needed
-            if (filelist.deletes != null && filelist.deletes.Count > 0)
-            {
-                foreach (var del in filelist.deletes)
-                {
-                    if (string.IsNullOrWhiteSpace(del.name)) continue;
-                    if (!UtilityLibrary.IsPathChild(del.name)) continue;
-                    if (File.Exists(del.name)) return true;
-                }
-            }
-
-            foreach (var entry in filelist.downloads)
-            {
-                if (entry == null || string.IsNullOrWhiteSpace(entry.name)) continue;
-
-                var path = entry.name.Replace("/", "\\");
-                if (!UtilityLibrary.IsPathChild(path))
-                {
-                    // Ignore anything outside EQ dir
-                    continue;
-                }
-
-                bool isNameOnlyFile = nameOnlyFiles.Any(f =>
-                    string.Equals(path, f, StringComparison.OrdinalIgnoreCase)
-                );
-
-                if (isNameOnlyFile)
-                {
-                    // Only needs patch if missing
-                    if (!File.Exists(path)) return true;
-                    continue;
-                }
-
-                bool isNameOnlyFolder = nameOnlyFolders.Any(f =>
-                    path.StartsWith(f, StringComparison.OrdinalIgnoreCase)
-                );
-
-                if (isNameOnlyFolder)
-                {
-                    // Only needs patch if missing
-                    if (!File.Exists(path)) return true;
-                    continue;
-                }
-
-                // Normal file: missing, size mismatch, or md5 mismatch => needs patch
-                if (!File.Exists(path)) return true;
-
-                try
-                {
-                    var fi = new FileInfo(path);
-                    if (entry.size > 0 && fi.Length != entry.size) return true;
-                }
-                catch { /* ignore and fall back to md5 */ }
-
-                var md5 = UtilityLibrary.GetMD5(path);
-                if (!string.Equals(md5, entry.md5, StringComparison.OrdinalIgnoreCase)) return true;
-            }
-
-            return false;
-        }
-
-private async void MainForm_Load(object sender, EventArgs e)
+        private async void MainForm_Load(object sender, EventArgs e)
         {
             isLoading = true;
             version = Assembly.GetEntryAssembly().GetName().Version.ToString();
@@ -354,11 +297,12 @@ private async void MainForm_Load(object sender, EventArgs e)
 
             remoteFilelistVersion = filelist.version;
 
-            // Determine if anything actually needs patching (missing/outdated files or pending deletes)
-            needsPatch = ComputeNeedsPatch(filelist);
+            // Determine if anything actually needs patching (fast path with MD5 cache).
+            needsPatch = DetermineNeedsPatch(filelist);
 
             bool updateAvailable = IsUpdateAvailable();
-if (!isPendingPatch)
+
+            if (!isPendingPatch)
             {
                 UpdatePlayAndPatchButtonColors(updateAvailable);
             }
@@ -372,6 +316,191 @@ if (!isPendingPatch)
             }
             cts.Cancel();
         }
+
+
+private string GetHashCachePath()
+{
+    try
+    {
+        return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "hashcache.txt");
+    }
+    catch
+    {
+        return "hashcache.txt";
+    }
+}
+
+private void LoadHashCache()
+{
+    _hashCache.Clear();
+    try
+    {
+        var p = GetHashCachePath();
+        if (!File.Exists(p)) return;
+
+        foreach (var line in File.ReadAllLines(p))
+        {
+            if (string.IsNullOrWhiteSpace(line)) continue;
+            // format: relPath|size|mtimeUtcTicks|md5
+            var parts = line.Split('|');
+            if (parts.Length < 4) continue;
+
+            var key = parts[0];
+            if (string.IsNullOrWhiteSpace(key)) continue;
+
+            if (!long.TryParse(parts[1], out var size)) continue;
+            if (!long.TryParse(parts[2], out var ticks)) continue;
+            var md5 = parts[3];
+
+            _hashCache[key] = new HashCacheEntry
+            {
+                Size = size,
+                MTimeUtcTicks = ticks,
+                Md5 = md5
+            };
+        }
+    }
+    catch
+    {
+        // ignore cache failures; we'll just re-hash as needed
+    }
+}
+
+private void SaveHashCache()
+{
+    try
+    {
+        var p = GetHashCachePath();
+        var tmp = p + ".tmp";
+
+        using (var sw = new StreamWriter(tmp, false))
+        {
+            foreach (var kv in _hashCache)
+            {
+                var k = kv.Key ?? "";
+                var v = kv.Value;
+                if (v == null) continue;
+                sw.WriteLine($"{k}|{v.Size}|{v.MTimeUtcTicks}|{v.Md5}");
+            }
+        }
+
+        if (File.Exists(p)) File.Delete(p);
+        File.Move(tmp, p);
+    }
+    catch
+    {
+        // ignore cache failures
+    }
+}
+catch
+    {
+        // ignore cache failures
+    }
+}
+
+private static string NormalizeRelPath(string rel)
+{
+    if (string.IsNullOrWhiteSpace(rel)) return "";
+    return rel.Replace('/', '\').TrimStart('\');
+}
+
+private static bool IsNameOnly(string relPath)
+{
+    var p = NormalizeRelPath(relPath);
+    // Name-only file?
+    foreach (var f in NameOnlyFiles)
+    {
+        if (string.Equals(p, f, StringComparison.OrdinalIgnoreCase))
+            return true;
+    }
+    // Name-only folder?
+    foreach (var d in NameOnlyFolders)
+    {
+        if (p.StartsWith(d, StringComparison.OrdinalIgnoreCase))
+            return true;
+    }
+    return false;
+}
+
+private bool DetermineNeedsPatch(FileList filelist)
+{
+    // Per your request:
+    //  - For name-only files/folders: check existence ONLY (skip MD5)
+    //  - For everything else: use MD5 only (missing file => needs patch)
+    if (filelist == null || filelist.downloads == null) return false;
+
+    LoadHashCache();
+
+    try
+    {
+        // 1) Pending deletes: if the local file exists, a patch action is needed
+        if (filelist.deletes != null)
+        {
+            foreach (var del in filelist.deletes)
+            {
+                var delPath = NormalizeRelPath(del.name);
+                if (!UtilityLibrary.IsPathChild(delPath)) continue;
+                if (File.Exists(delPath))
+                    return true;
+            }
+        }
+
+        // 2) Downloads: first mismatch => needs patch (fast early-exit)
+        foreach (var entry in filelist.downloads)
+        {
+            var rel = NormalizeRelPath(entry.name);
+
+            if (!UtilityLibrary.IsPathChild(rel))
+                continue;
+
+            // Name-only: existence only
+            if (IsNameOnly(rel))
+            {
+                if (!File.Exists(rel))
+                    return true;
+                continue;
+            }
+
+            // Non-name-only: missing => needs patch
+            if (!File.Exists(rel))
+                return true;
+
+            // MD5 compare with cache
+            var fi = new FileInfo(rel);
+            var key = rel.Replace('\', '/'); // stable key in cache
+
+            if (_hashCache.TryGetValue(key, out var cached) &&
+                cached != null &&
+                cached.Size == fi.Length &&
+                cached.MTimeUtcTicks == fi.LastWriteTimeUtc.Ticks &&
+                !string.IsNullOrWhiteSpace(cached.Md5))
+            {
+                if (!string.Equals(cached.Md5, entry.md5, StringComparison.OrdinalIgnoreCase))
+                    return true;
+                continue;
+            }
+
+            // Compute MD5 only when needed
+            var md5 = UtilityLibrary.GetMD5(rel);
+
+            _hashCache[key] = new HashCacheEntry
+            {
+                Size = fi.Length,
+                MTimeUtcTicks = fi.LastWriteTimeUtc.Ticks,
+                Md5 = md5
+            };
+
+            if (!string.Equals(md5, entry.md5, StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+
+        return false;
+    }
+    finally
+    {
+        SaveHashCache();
+    }
+}
 
         private void detectClientVersion()
         {
@@ -732,10 +861,10 @@ if (!isPendingPatch)
                 }
 
                 StatusLibrary.Log($"Up to date with patch {version}.");
-                IniLibrary.instance.LastPatchedVersion = filelist.version;
-                IniLibrary.Save();
                 remoteFilelistVersion = filelist.version;
-                needsPatch = false;
+
+            // Determine if anything actually needs patching (fast path with MD5 cache).
+            needsPatch = DetermineNeedsPatch(filelist);
                 Invoke((MethodInvoker)delegate { UpdatePlayAndPatchButtonColors(IsUpdateAvailable()); });
                 return;
             }
@@ -745,7 +874,9 @@ if (!isPendingPatch)
             IniLibrary.instance.LastPatchedVersion = filelist.version;
             IniLibrary.Save();
             remoteFilelistVersion = filelist.version;
-            needsPatch = false;
+
+            // Determine if anything actually needs patching (fast path with MD5 cache).
+            needsPatch = DetermineNeedsPatch(filelist);
             Invoke((MethodInvoker)delegate { UpdatePlayAndPatchButtonColors(IsUpdateAvailable()); });
             return;
         }
