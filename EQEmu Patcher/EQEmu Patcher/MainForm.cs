@@ -242,16 +242,16 @@ namespace EQEmu_Patcher
             }));
 
             string webUrl = $"{filelistUrl}{suffix}/filelist_{suffix}.yml";
-StatusLibrary.Log($"FILELIST URL: {webUrl}");
+            StatusLibrary.Log($"FILELIST URL: {webUrl}");
 
-string err = await DownloadFile(cts, webUrl, "filelist.yml");
-if (!string.IsNullOrEmpty(err))
-{
-    StatusLibrary.Log($"ERROR downloading filelist: {err}");
-    return; // do NOT continue with stale/missing filelist
-}
+            string err = await DownloadFile(cts, webUrl, "filelist.yml");
+            if (!string.IsNullOrEmpty(err))
+            {
+                StatusLibrary.Log($"ERROR downloading filelist: {err}");
+                return; // do NOT continue with a stale/missing filelist
+            }
 
-// Note: self-update checks should be handled separately (not via filelist download errors).
+
             FileList filelist;
 
             using (var input = File.OpenText(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.ExecutablePath), "filelist.yml")))
@@ -410,24 +410,25 @@ if (!string.IsNullOrEmpty(err))
             StartPatch();
         }
 
-        public static async Task<string> DownloadFile(CancellationTokenSource cts, string url, string path)
-{
-    // Normalize local slashes and ensure all downloads go under the patcher EXE directory.
-    path = path.Replace("/", "\\");
-    var exeDir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
-    var fullPath = System.IO.Path.Combine(exeDir, path);
+        public static async Task<string> DownloadFile(CancellationTokenSource cts, string url, string relativePath)
+        {
+            // Always write downloads relative to the patcher EXE directory.
+            var exeDir = Path.GetDirectoryName(Application.ExecutablePath);
 
-    // Make directory if needed.
-    var dir = System.IO.Path.GetDirectoryName(fullPath);
-    if (!string.IsNullOrEmpty(dir))
-    {
-        Directory.CreateDirectory(dir);
-    }
+            // Disk paths should use backslashes; URLs will be handled separately when building the URL.
+            var localRel = relativePath.Replace("/", "\\");
+            var fullPath = Path.Combine(exeDir, localRel);
 
-    return await UtilityLibrary.DownloadFile(cts, url, fullPath);
-}
-            return await UtilityLibrary.DownloadFile(cts, url, path);
+            // Ensure the destination directory exists.
+            var dir = Path.GetDirectoryName(fullPath);
+            if (!string.IsNullOrEmpty(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+
+            return await UtilityLibrary.DownloadFile(cts, url, fullPath);
         }
+
 
         public static async Task<byte[]> Download(CancellationTokenSource cts, string url)
         {
