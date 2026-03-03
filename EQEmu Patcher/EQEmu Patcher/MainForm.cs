@@ -34,6 +34,26 @@ namespace EQEmu_Patcher
         CancellationTokenSource cts;
         System.Diagnostics.Process process;
 
+
+        private bool IsUpdateAvailable(string remoteFilelistVersion)
+        {
+            if (isNeedingSelfUpdate) return true;
+            if (!string.IsNullOrEmpty(remoteFilelistVersion) && remoteFilelistVersion != IniLibrary.instance.LastPatchedVersion) return true;
+            return false;
+        }
+
+        private void UpdatePlayAndPatchButtonColors(bool updateAvailable)
+        {
+            // Allow BackColor to show (visual styles can override otherwise)
+            btnStart.UseVisualStyleBackColor = false;
+
+            // Patch button: red when update is available
+            btnCheck.BackColor = updateAvailable ? Color.Red : SystemColors.Control;
+
+            // Play button: red when NO update is available
+            btnStart.BackColor = updateAvailable ? SystemColors.Control : Color.Red;
+            btnStart.ForeColor = updateAvailable ? SystemColors.ControlText : Color.White;
+        }
         //Note that for supported versions, the 3 letter suffix is needed on the filelist_###.yml file.
         public static List<VersionTypes> supportedClients = new List<VersionTypes> { //Supported clients for patcher
             //VersionTypes.Unknown, //unk
@@ -197,14 +217,21 @@ namespace EQEmu_Patcher
             StatusLibrary.SubscribePatchState(new StatusLibrary.PatchStateHandler((bool isPatchGoing) => {
                 Invoke((MethodInvoker)delegate {
 
-                    btnCheck.BackColor = SystemColors.Control;
                     if (isPatchGoing)
                     {
+                        // While patching, show cancel and keep patch button neutral
+                        btnCheck.BackColor = SystemColors.Control;
                         btnCheck.Text = "Cancel";
                         return;
                     }
 
                     btnCheck.Text = "Patch";
+
+                    // When patching stops, re-apply correct colors (if we already loaded a filelist version)
+                    if (!string.IsNullOrEmpty(remoteFilelistVersion) && !isPendingPatch)
+                    {
+                        UpdatePlayAndPatchButtonColors(IsUpdateAvailable(remoteFilelistVersion));
+                    }
                 });
             }));
 
@@ -256,19 +283,27 @@ namespace EQEmu_Patcher
                 var deserializer = deserializerBuilder.Build();
 
                 filelist = deserializer.Deserialize<FileList>(input);
+            remoteFilelistVersion = filelist.version;
             }
 
-            if (filelist.version != IniLibrary.instance.LastPatchedVersion)
+            // ------------------------------------------------------------
+            // Button color logic:
+            // - Patch button RED when update is available
+            // - Play button RED when NO update is available
+            // ------------------------------------------------------------
+            var updateAvailable = IsUpdateAvailable(filelist.version);
+
+            if (!isPendingPatch)
             {
-                if (!isPendingPatch)
-                {
-                    btnCheck.BackColor = Color.Red;
-                }
-            } else
+                UpdatePlayAndPatchButtonColors(updateAvailable);
+            }
+
+            if (!updateAvailable)
             {
                 if (isAutoPlay) PlayGame();
             }
-            isLoading = false;
+
+isLoading = false;
             if (File.Exists("eqemupatcher.png"))
             {
                 splashLogo.Load("eqemupatcher.png");
@@ -462,6 +497,7 @@ namespace EQEmu_Patcher
                 var deserializer = deserializerBuilder.Build();
 
                 filelist = deserializer.Deserialize<FileList>(input);
+            remoteFilelistVersion = filelist.version;
             }
 
             double totalBytes = 0; //total patch size
@@ -484,9 +520,18 @@ namespace EQEmu_Patcher
             {
                 "ActorEffects\\",
                 "SpellEffects\\",
-		"EnvEmitterEffects\\"
-
+                "EnvEmitterEffects\\",
+                "uiresources\\",
+                "uifiles\\"
             };
+
+            // Name-only files (download only if missing; skip MD5)
+            var nameOnlyFiles = new[]
+            {
+                "nektulos.old",
+                "nektulosa.zon"
+            };
+
 
             if (myHash != "" && isNeedingSelfUpdate)
             {
@@ -531,6 +576,20 @@ namespace EQEmu_Patcher
                     StatusLibrary.Log("Path " + path + " might be outside of your Everquest directory. Skipping download to this location.");
                     continue;
                 }
+
+                // ------------------------------------------------------------
+                // Name-only file logic: if already present, skip MD5 + download
+                // ------------------------------------------------------------
+                bool isNameOnlyFile = nameOnlyFiles.Any(f =>
+                    Path.GetFileName(path).Equals(f, StringComparison.OrdinalIgnoreCase)
+                );
+
+                if (isNameOnlyFile && File.Exists(path))
+                {
+                    currentBytes += entry.size;
+                    continue;
+                }
+
 
                 // ------------------------------------------------------------
                 // Name-only folder logic: if already present, skip MD5 + download
