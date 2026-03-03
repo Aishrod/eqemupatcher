@@ -241,18 +241,27 @@ namespace EQEmu_Patcher
                 });
             }));
 
-            string webUrl = $"{filelistUrl}{suffix}/filelist_{suffix}.yml";
-            StatusLibrary.Log($"FILELIST URL: {webUrl}");
+            string webUrl1 = $"{filelistUrl}{suffix}/filelist_{suffix}.yml";
+            string webUrl2 = $"{filelistUrl}filelist_{suffix}.yml"; // fallback (no /<suffix>/ folder)
 
-            string err = await DownloadFile(cts, webUrl, "filelist.yml");
+            StatusLibrary.Log($"FILELIST URL (1): {webUrl1}");
+            string err = await DownloadFile(cts, webUrl1, "filelist.yml");
+
             if (!string.IsNullOrEmpty(err))
             {
-                StatusLibrary.Log($"ERROR downloading filelist: {err}");
-                return; // do NOT continue with a stale/missing filelist
+                StatusLibrary.Log($"FILELIST URL (1) failed: {err}");
+                StatusLibrary.Log($"FILELIST URL (2): {webUrl2}");
+
+                err = await DownloadFile(cts, webUrl2, "filelist.yml");
+                if (!string.IsNullOrEmpty(err))
+                {
+                    StatusLibrary.Log($"ERROR downloading filelist (2): {err}");
+                    MessageBox.Show("Failed to fetch filelist from " + webUrl2 + ": " + err);
+                    this.Close();
+                    return;
+                }
             }
-
-
-            FileList filelist;
+FileList filelist;
 
             using (var input = File.OpenText(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Application.ExecutablePath), "filelist.yml")))
             {
