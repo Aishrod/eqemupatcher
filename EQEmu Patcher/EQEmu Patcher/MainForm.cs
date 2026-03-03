@@ -31,6 +31,9 @@ namespace EQEmu_Patcher
         bool isLoading;
         bool isAutoPatch = false;
         bool isAutoPlay = false;
+        // Cached remote filelist version read from filelist.yml. Used to re-apply UI state
+        // (button colors) when patching completes.
+        string remoteFilelistVersion = "";
         CancellationTokenSource cts;
         System.Diagnostics.Process process;
 
