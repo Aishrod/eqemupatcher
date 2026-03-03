@@ -532,7 +532,8 @@ isLoading = false;
             var nameOnlyFiles = new[]
             {
                 "nektulos.old",
-                "nektulosa.zon"
+                "nektulosa.zon",
+		"actoremittersnew.edd"
             };
 
 
