@@ -1,0 +1,4 @@
+3
+rtn,rtn
+pma,pma
+goo,goo_chr
