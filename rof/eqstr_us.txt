@@ -6690,7 +6690,7 @@ EQST0002
 13865 Baking
 13866 Bind Wound
 13867 Bash
-13868 Begging
+13868 Twin Slash
 13869 Berserking
 13870 Blacksmithing
 13871 Block
@@ -6700,7 +6700,7 @@ EQST0002
 13875 Conjuration
 13876 Defense
 13877 Disarm
-13878 Disarm Traps
+13878 Expert Shot
 13879 Divination
 13880 Dodge
 13881 Double Attack
