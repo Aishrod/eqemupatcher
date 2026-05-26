@@ -2394,7 +2394,7 @@ EQST0002
 3667 You have successfully uploaded your paperdoll to EQPlayers.  Your profile should be updated with it shortly.
 3668 There was an error in attempting to upload your paperdoll to EQPlayers.  The paperdoll has been saved to: <EQ Directory>\Resources\paperdoll.png, you can go to www.eqplayers.com and use the character admin tools to try and manually upload it.
 3669 There was an error in trying to quit your selected task, please try again.
-3670 Remove Trap
+3670 Expert Shot
 3671 You cannot remove this, you are only allowed to remove traps you have set.
 3672 You must target a trap you have placed in order to remove it.
 3673 You are unable to change the form of your target.
@@ -6700,7 +6700,7 @@ EQST0002
 13875 Conjuration
 13876 Defense
 13877 Disarm
-13878 Expert Shot
+13878 Disarm Trap
 13879 Divination
 13880 Dodge
 13881 Double Attack
