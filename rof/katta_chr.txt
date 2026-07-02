@@ -1,0 +1,7 @@
+6
+mmm,mmm_chr
+btn,btn
+gfc,gfc
+qcf,qeynos_chr
+hnm,hnm
+mnt,mnt
