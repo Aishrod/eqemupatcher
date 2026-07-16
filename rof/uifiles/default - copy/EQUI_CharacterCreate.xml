@@ -3525,7 +3525,7 @@
 		<Style_Border>true</Style_Border>
 		<Style_Sizable>false</Style_Sizable>
 		<Pieces>CC_Appearance_Button</Pieces>
-		<Pieces>CC_Seasonal_Character_Button</Pieces>
+		<Pieces>CC_Tutorial_Button</Pieces>
 		<Pieces>CC_Cancel_Button</Pieces>
 		<Pieces>CC_Advanced_Button</Pieces>
 		<Pieces>CC_Deity_Label</Pieces>
@@ -3564,8 +3564,8 @@
 		<Pieces>CC_Name_Edit</Pieces>
 		<Pieces>CC_Get_Name_Button</Pieces>
 	</Screen>
-	<Button item="CC_Seasonal_Character_Button">
-		<ScreenID>CC_Seasonal_Character_Button</ScreenID>
+	<Button item="CC_Tutorial_Button">
+		<ScreenID>CC_Tutorial_Button</ScreenID>
 		<RelativePosition>true</RelativePosition>
 		<Location>
 			<X>47</X>
