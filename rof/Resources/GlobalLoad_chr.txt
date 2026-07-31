@@ -1,4 +1,4 @@
-62
+68
 liz,liz_chr
 skn,skn_chr
 mos,mos_chr
@@ -59,3 +59,9 @@ pim
 rat,butcher_chr
 bet,ecommons_chr
 fgt,fgt
+drg,drg
+eey,eey_chr
+hrp,hrp
+grn,grn
+gnl,gnl
+gfs,gfs
