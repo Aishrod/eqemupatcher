@@ -11,7 +11,6 @@ using Microsoft.WindowsAPICodePack.Taskbar;
 using System.Diagnostics;
 using System.Threading;
 using System.Linq; // ADDED: for Any()
-using System.Text;
 
 namespace EQEmu_Patcher
 {
@@ -460,73 +459,6 @@ isLoading = false;
             return await UtilityLibrary.Download(cts, url);
         }
 
-        // eqgame.exe is stored on the patch host as Base64 text because some
-        // upload paths alter newline bytes in binary executables. Download the
-        // text, decode it, and validate the finished executable before replacing
-        // the player's existing copy.
-        public static async Task<string> DownloadBase64File(
-            CancellationTokenSource cts,
-            string url,
-            string path,
-            string expectedMd5,
-            int expectedSize)
-        {
-            string temporaryPath = null;
-
-            try
-            {
-                var encodedBytes = await Download(cts, url);
-                var encodedText = Encoding.ASCII.GetString(encodedBytes);
-                var compactBase64 = new string(encodedText
-                    .Where(c => !char.IsWhiteSpace(c))
-                    .ToArray());
-                var decodedBytes = Convert.FromBase64String(compactBase64);
-
-                if (decodedBytes.Length != expectedSize)
-                {
-                    return $"Decoded size mismatch: expected {expectedSize}, received {decodedBytes.Length}";
-                }
-
-                var outPath = Path.Combine(
-                    Path.GetDirectoryName(Application.ExecutablePath),
-                    path.Replace("/", "\\"));
-                var outDirectory = Path.GetDirectoryName(outPath);
-                if (!string.IsNullOrEmpty(outDirectory))
-                {
-                    Directory.CreateDirectory(outDirectory);
-                }
-
-                temporaryPath = outPath + ".download";
-                File.WriteAllBytes(temporaryPath, decodedBytes);
-
-                var decodedMd5 = UtilityLibrary.GetMD5(temporaryPath);
-                if (!decodedMd5.Equals(expectedMd5, StringComparison.OrdinalIgnoreCase))
-                {
-                    return $"Decoded MD5 mismatch: expected {expectedMd5}, received {decodedMd5}";
-                }
-
-                File.Copy(temporaryPath, outPath, true);
-                File.Delete(temporaryPath);
-                temporaryPath = null;
-                return "";
-            }
-            catch (FormatException e)
-            {
-                return "Invalid Base64 data: " + e.Message;
-            }
-            catch (Exception e)
-            {
-                return "Exception: " + e.Message;
-            }
-            finally
-            {
-                if (!string.IsNullOrEmpty(temporaryPath) && File.Exists(temporaryPath))
-                {
-                    File.Delete(temporaryPath);
-                }
-            }
-        }
-
         private void StartPatch()
         {
             if (isPatching)
@@ -691,20 +623,7 @@ isLoading = false;
 
                 string url = filelist.downloadprefix + entry.name.Replace("\\", "/");
 
-                string resp;
-                if (Path.GetFileName(entry.name).Equals("eqgame.exe", StringComparison.OrdinalIgnoreCase))
-                {
-                    resp = await DownloadBase64File(
-                        cts,
-                        url + ".b64",
-                        entry.name,
-                        entry.md5,
-                        entry.size);
-                }
-                else
-                {
-                    resp = await DownloadFile(cts, url, entry.name);
-                }
+                string resp = await DownloadFile(cts, url, entry.name);
                 if (resp != "")
                 {
                     if (resp == "404")
