@@ -356,6 +356,7 @@ isLoading = false;
                     case "2FD5E6243BCC909D9FD0587A156A1165": //https://github.com/xackery/eqemupatcher/issues/20
                     case "26DC13388395A20B73E1B5A08415B0F8": //Legacy of Norrath Custom RoF2 Client https://github.com/xackery/eqemupatcher/issues/16
                     case "5CE53072D83310D8AFD944E4B8CC8864": // Perky Crew patched RoF2 client
+                    case "C1F96696EAAF803523E1B8B1A086E121": // Perky Crew native skills UI v3 client
                     case "AA4949D93A17C67E203C07691B613DDB": // Additional Perky Crew RoF2 client hash
                         currentVersion = VersionTypes.Rain_Of_Fear_2;
                         splashLogo.Image = Properties.Resources.rof;
