@@ -1,5 +1,5 @@
 EQST0002
-0 7136
+0 7135
 1 %1 %2 %3 %4 %5 %6 %7 %8 %9
 2 %2
 3 %3
@@ -6747,8 +6747,9 @@ EQST0002
 13922 Intimidation
 13923 Wind Instruments
 13924 Tail Rake
-13925 Twin Slash
-13926 Expert Shot
+13925 usable
+13926 Twin Slash
+13927 Expert Shot
 13950 /who
 13951 /consider
 13952 /bugreport
