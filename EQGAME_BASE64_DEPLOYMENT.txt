@@ -1,0 +1,24 @@
+Perky Crew eqgame.exe Base64 deployment
+========================================
+
+The patcher now downloads eqgame.exe from this server filename:
+
+    eqgame.exe.b64
+
+Keep the filelist.yml entry named eqgame.exe. Its size and MD5 must describe
+the decoded executable, not the Base64 file:
+
+    name: eqgame.exe
+    size: 8786944
+    md5: 5CE53072D83310D8AFD944E4B8CC8864
+
+Upload the supplied eqgame.exe.b64 beside the old eqgame.exe on the patch
+server. The patcher ignores whitespace in the Base64 file, decodes it locally,
+checks the decoded size and MD5, and only then replaces eqgame.exe.
+
+The valid decoded executable must have:
+
+    Size: 8786944 bytes
+    MD5:  5CE53072D83310D8AFD944E4B8CC8864
+
+All other patch files continue using the original binary download path.
