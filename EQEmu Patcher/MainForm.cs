@@ -367,21 +367,14 @@ isLoading = false;
                         splashLogo.Image = Properties.Resources.brokenmirror;
                         break;
                     default:
-                        currentVersion = VersionTypes.Unknown;
+                        // Perky Crew uses a custom RoF2 client. Do not reject modified eqgame.exe builds
+                        // just because their MD5 is not in the legacy client whitelist.
+                        currentVersion = VersionTypes.Rain_Of_Fear_2;
+                        splashLogo.Image = Properties.Resources.rof;
                         break;
                 }
-                if (currentVersion == VersionTypes.Unknown)
-                {
-                    if (MessageBox.Show("Unable to recognize the Everquest client in this directory, open a web page to report to devs?", "Visit", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
-                    {
-                        System.Diagnostics.Process.Start("https://github.com/Xackery/eqemupatcher/issues/new?title=A+New+EQClient+Found&body=Hi+I+Found+A+New+Client!+Hash:+" + hash);
-                    }
-                    StatusLibrary.Log($"Unable to recognize the Everquest client in this directory, send to developers: {hash}");
-                }
-                else
-                {
-                    //StatusLibrary.Log($"You seem to have put me in a {clientVersions[currentVersion].FullName} client directory");
-                }
+
+                //StatusLibrary.Log($"You seem to have put me in a {clientVersions[currentVersion].FullName} client directory");
 
             }
             catch (UnauthorizedAccessException err)
